@@ -320,6 +320,15 @@ window.addEventListener('load', () => {
         ease: "back.out(1.5)"
     });
 
+    // Trusted By Section Entrance
+    gsap.from('.trusted-section', {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        delay: 1.6,
+        ease: "power2.out"
+    });
+
 
 });
 
@@ -409,3 +418,73 @@ if (rotatingTextElement) {
     // Start the rotation every 4 seconds (increased for better visibility)
     setInterval(flipToNewWord, 4000);
 }
+
+// --- 6. FOOTER SCROLL ANIMATION ---
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.footer-modern', {
+        scrollTrigger: {
+            trigger: '.footer-modern',
+            start: 'top 90%', // When top of footer hits 90% of viewport height
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power2.out'
+    });
+
+    gsap.from('.footer-heading', {
+        scrollTrigger: {
+            trigger: '.footer-modern',
+            start: 'top 80%',
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: 0.2
+    });
+    
+    // Stagger the contact cards
+    gsap.from('.contact-card', {
+        scrollTrigger: {
+            trigger: '.footer-grid',
+            start: 'top 85%',
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.1, // Stagger effect for each card
+        ease: 'power2.out'
+    });
+});
+
+// --- 7. MERCH CAROUSEL ANIMATION ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Stagger entrance for merch cards
+    gsap.from('.merch-card', {
+        scrollTrigger: {
+            trigger: '.merch-section',
+            start: 'top 80%',
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power2.out'
+    });
+    
+    // Animate title
+    gsap.from('.section-title', {
+         scrollTrigger: {
+            trigger: '.merch-section',
+            start: 'top 85%',
+        },
+        x: -50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+    });
+});
