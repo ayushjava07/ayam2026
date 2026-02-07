@@ -260,7 +260,7 @@ window.addEventListener('load', () => {
         delay: 0.4
     });
 
-    gsap.from('.massive-ayam', {
+    gsap.from('.massive-aayam', {
         opacity: 0,
         y: 60,
         scale: 0.95,
@@ -524,7 +524,7 @@ window.addEventListener('load', () => {
     if (!preloader) return;
 
     // Check if we've already shown the loader this session
-    if (sessionStorage.getItem('ayamLoaded')) {
+    if (sessionStorage.getItem('aayamLoaded')) {
         preloader.style.display = 'none';
         return;
     }
@@ -553,7 +553,7 @@ window.addEventListener('load', () => {
                 body.style.overflow = '';
 
                 // Mark as loaded so it doesn't show again on refresh/nav
-                sessionStorage.setItem('ayamLoaded', 'true');
+                sessionStorage.setItem('aayamLoaded', 'true');
 
                 setTimeout(() => {
                     preloader.remove();
