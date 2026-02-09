@@ -1,4 +1,4 @@
-# AYAAM 2026 - Tech Fest Landing Page Enhancements
+# AAYAM 2026 - Tech Fest Landing Page Enhancements
 
 ## 🎨 Visual Enhancements Completed
 

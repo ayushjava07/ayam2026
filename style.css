@@ -74,7 +74,7 @@
 
     /* Typography - Specific Font Assignments */
     --font-heading: 'Orbitron', 'CustomHeading', sans-serif;
-    /* AYAM / HERO headings */
+    /* AAYAM / HERO headings */
     --font-rotating: 'Rajdhani', sans-serif;
     /* Rotating tech words */
     --font-body: 'Inter', 'CustomBody', sans-serif;
@@ -277,7 +277,7 @@ body::before {
 
 /* Create geometric effect with pseudo-elements */
 .brand-main::before {
-    content: 'AYAM';
+    content: 'AAYAM';
     position: absolute;
     left: 0;
     top: 0;
@@ -3292,7 +3292,8 @@ body::before {
 .merch-glass-container {
     width: 100%;
     max-width: 1000px;
-    background: rgba(20, 10, 30, 0.3); /* Reduced opacity from 0.6 */
+    background: rgba(20, 10, 30, 0.3);
+    /* Reduced opacity from 0.6 */
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px;
