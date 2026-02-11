@@ -39,12 +39,12 @@
   <!-- Navbar -->
   <nav class="top-nav">
     <div class="brand-logo">
-      <span class="brand-main">AAYAM</span>
-      <span class="brand-sub">NIT AGARTALA</span>
+      <img src="assets/logocolor.PNG" alt="AAYAM Color Logo" class="nav-logo-icon">
+      <img src="assets/AAYAM.png" alt="AAYAM Logo" class="nav-logo-img">
     </div>
     <div class="nav-menu">
       <a href="index.html" class="nav-link">Home</a>
-      <a href="#events" class="nav-link">Events</a>
+      <a href="events.html" class="nav-link">Events</a>
       <a href="sponsors.html" class="nav-link">Sponsors</a>
       <a href="#merchandise" class="nav-link">Merch</a>
       <a href="#gallery" class="nav-link">Gallery</a>
@@ -59,18 +59,18 @@
       <!-- Left Column -->
       <div class="hero-left">
         <div class="hero-overline">
-          <span class="slash">//</span> FEB 06-09, 2026
+          <span class="slash">//</span> March 06-09, 2026
         </div>
 
         <h1 class="poster-headline">
           BECOME A STAR <br>
-          <span class="text-pink italic rotating-text" id="rotatingText">LEGEND</span>
+          <span class="text-pink rotating-text" id="rotatingText">LEGEND</span>
         </h1>
 
         <p class="poster-desc">
-          Join <span class="text-white bold">3 days of innovation</span> featuring
-          50+ cutting-edge events, workshops, and competitions. Build, compete, and network with the brightest minds in
-          tech.
+          <!-- Theme: <span class="text-white bold">Innovating for a Viksit Bharat 2047</span>. Join us as we contribute to -->
+          India’s transformation with meticulously designed events promoting technological advancements,
+          entrepreneurship, and societal impact.
         </p>
 
         <div class="poster-form">
@@ -166,116 +166,144 @@
       </div>
     </div>
   </section>
-  <!-- Content Sections -->
-  <section id="events" class="events-section">
-    <div class="container events-container">
-      <h2 class="section-heading">FEATURED EVENTS <span class="slash">//</span></h2>
+  <!-- Featured Events Carousel -->
+  <section id="featured-events" class="events-section">
+    <div class="events-container">
+      <h2 class="section-heading-neon">FEATURED HIGHLIGHTS <span class="slash">//</span></h2>
 
       <div class="carousel-wrapper">
-        <button class="carousel-btn prev-btn" aria-label="Previous Event">
-          <i class="fa-solid fa-chevron-left"></i>
-        </button>
-
+        <button class="carousel-btn prev-btn" aria-label="Previous Slide"><i
+            class="fa-solid fa-chevron-left"></i></button>
         <div class="carousel-track-container">
           <ul class="carousel-track">
-            <!-- Event 1 -->
+            <!-- Slide 1: Inauguration -->
             <li class="carousel-slide current-slide">
-              <div class="event-card glass-card">
+              <div class="event-card">
                 <div class="card-image-wrapper">
-                  <img src="assets/asset 11.png" alt="Hackathon" class="event-poster">
+                  <img src="assets/featured_inauguration_1770787097199.png" alt="Inauguration" class="event-poster">
                   <div class="poster-glow"></div>
                 </div>
                 <div class="card-details">
-                  <h3 class="event-title">HACKATHON</h3>
-                  <p class="event-type">CODE THE FUTURE</p>
+                  <h3 class="event-title">Inauguration</h3>
+                  <div class="event-type">Ceremony</div>
                   <div class="event-actions">
-                    <button class="btn-register-event">REGISTER</button>
-                    <button class="btn-rulebook">RULEBOOK</button>
+                    <button class="btn-register-event" onclick="window.location.href='events.html'">Register</button>
+                    <button class="btn-rulebook" onclick="window.location.href='events.html'">Details</button>
                   </div>
                 </div>
               </div>
             </li>
-            <!-- Event 2 -->
+
+            <!-- Slide 2: Hackathon -->
             <li class="carousel-slide">
-              <div class="event-card glass-card">
+              <div class="event-card">
                 <div class="card-image-wrapper">
-                  <img src="assets/asset 12.png" alt="Robo Wars" class="event-poster">
+                  <img src="assets/featured_hackathon_v2_1770787255379.png" alt="Hackathon" class="event-poster">
                   <div class="poster-glow"></div>
                 </div>
                 <div class="card-details">
-                  <h3 class="event-title">ROBO WARS</h3>
-                  <p class="event-type">MECHANICAL MAYHEM</p>
+                  <h3 class="event-title">Hackathon</h3>
+                  <div class="event-type">Innovation</div>
                   <div class="event-actions">
-                    <button class="btn-register-event">REGISTER</button>
-                    <button class="btn-rulebook">RULEBOOK</button>
+                    <button class="btn-register-event" onclick="window.location.href='events.html'">Register</button>
+                    <button class="btn-rulebook" onclick="window.location.href='events.html'">Rulebook</button>
                   </div>
                 </div>
               </div>
             </li>
-            <!-- Event 3 -->
+
+            <!-- Slide 3: Artist Night -->
             <li class="carousel-slide">
-              <div class="event-card glass-card">
+              <div class="event-card">
                 <div class="card-image-wrapper">
-                  <img src="assets/asset 14.png" alt="Esports" class="event-poster">
+                  <img src="assets/featured_concert_v2_1770787273931.png" alt="Artist Night" class="event-poster">
                   <div class="poster-glow"></div>
                 </div>
                 <div class="card-details">
-                  <h3 class="event-title">ESPORTS</h3>
-                  <p class="event-type">CONQUER THE ARENA</p>
+                  <h3 class="event-title">Artist Night</h3>
+                  <div class="event-type">Concert</div>
                   <div class="event-actions">
-                    <button class="btn-register-event">REGISTER</button>
-                    <button class="btn-rulebook">RULEBOOK</button>
+                    <button class="btn-register-event" onclick="window.location.href='events.html'">Register</button>
+                    <button class="btn-rulebook" onclick="window.location.href='events.html'">Details</button>
                   </div>
                 </div>
               </div>
             </li>
-            <!-- Event 4 -->
+
+            <!-- Slide 4: Drone Race -->
             <li class="carousel-slide">
-              <div class="event-card glass-card">
+              <div class="event-card">
                 <div class="card-image-wrapper">
-                  <img src="assets/asset 8.png" alt="Circuit Design" class="event-poster">
+                  <img src="assets/featured_drone_race_v2_1770787293186.png" alt="Drone Race" class="event-poster">
                   <div class="poster-glow"></div>
                 </div>
                 <div class="card-details">
-                  <h3 class="event-title">CIRCUITRIX</h3>
-                  <p class="event-type">SPARK INNOVATION</p>
+                  <h3 class="event-title">Drone Race</h3>
+                  <div class="event-type">Competition</div>
                   <div class="event-actions">
-                    <button class="btn-register-event">REGISTER</button>
-                    <button class="btn-rulebook">RULEBOOK</button>
+                    <button class="btn-register-event" onclick="window.location.href='events.html'">Register</button>
+                    <button class="btn-rulebook" onclick="window.location.href='events.html'">Rulebook</button>
                   </div>
                 </div>
               </div>
             </li>
-            <!-- Event 5 -->
+
+            <!-- Slide 5: Star Gazing -->
             <li class="carousel-slide">
-              <div class="event-card glass-card">
+              <div class="event-card">
                 <div class="card-image-wrapper">
-                  <img src="assets/asset 4.png" alt="Ideathon" class="event-poster">
+                  <img src="assets/featured_stargazing_v2_1770787515731.png" alt="Star Gazing" class="event-poster">
                   <div class="poster-glow"></div>
                 </div>
                 <div class="card-details">
-                  <h3 class="event-title">IDEATHON</h3>
-                  <p class="event-type">PITCH YOUR DREAM</p>
+                  <h3 class="event-title">Star Gazing</h3>
+                  <div class="event-type">Experience</div>
                   <div class="event-actions">
-                    <button class="btn-register-event">REGISTER</button>
-                    <button class="btn-rulebook">RULEBOOK</button>
+                    <button class="btn-register-event" onclick="window.location.href='events.html'">Register</button>
+                    <button class="btn-rulebook" onclick="window.location.href='events.html'">Details</button>
                   </div>
                 </div>
               </div>
             </li>
+
+            <!-- Slide 6: Phewsion Gaming -->
+            <li class="carousel-slide">
+              <div class="event-card">
+                <div class="card-image-wrapper">
+                  <img src="assets/featured_gaming_v2_1770787317784.png" alt="Gaming" class="event-poster">
+                  <div class="poster-glow"></div>
+                </div>
+                <div class="card-details">
+                  <h3 class="event-title">Phewsion Gaming</h3>
+                  <div class="event-type">eSports</div>
+                  <div class="event-actions">
+                    <button class="btn-register-event" onclick="window.location.href='events.html'">Register</button>
+                    <button class="btn-rulebook" onclick="window.location.href='events.html'">Discord</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+
           </ul>
         </div>
-
-        <button class="carousel-btn next-btn" aria-label="Next Event">
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
+        <button class="carousel-btn next-btn" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
 
-      <div class="carousel-nav">
-        <!-- Indicators will be generated by JS -->
-      </div>
     </div>
   </section>
+
+  <!-- Event Schedule moved to events.html -->
+
+  <!-- Event Modal -->
+  <div class="event-modal-overlay" id="eventModalOverlay">
+    <div class="event-modal">
+      <div class="close-modal">&times;</div>
+      <h2 class="modal-title" id="modalTitle">Event Name</h2>
+      <span class="modal-time" id="modalTime">Time</span>
+      <p class="modal-desc" id="modalDesc">Description</p>
+      <button class="btn-modal-action">REGISTER NOW</button>
+    </div>
+  </div>
   <!-- Merchandise Section -->
   <!-- =========================================
        FUTURISTIC MERCHANDISE SECTION
@@ -364,8 +392,8 @@
             <a href="mailto:sponsorship@ayam.nit.ac.in" class="contact-email">sponsorship@ayam.nit.ac.in</a>
             <div class="contact-phone">+91 8967377009</div>
           </div>
-          
-      
+
+
         </div>
 
         <!-- Column 2 -->
@@ -396,9 +424,11 @@
         <a href="mailto:aayam.nita@nit.ac.in" class="business-email">AAYAM.NITA@NIT.AC.IN</a>
       </div>
 
-      <!-- Brand Large Text -->
+      <!-- Brand Large Logo -->
       <div class="footer-brand">
-        <span class="brand-text">AAYAM 2026</span>
+        <div class="footer-logo-wrapper">
+          <img src="assets/AAYAM.png" alt="AAYAM 2026 Logo" class="footer-logo-img">
+        </div>
       </div>
 
       <!-- Social Icons -->

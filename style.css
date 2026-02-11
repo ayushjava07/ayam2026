@@ -47,6 +47,16 @@
     font-display: swap;
 }
 
+/* NTBrickSans - Custom User Font */
+@font-face {
+    font-family: 'NTBrickSans';
+    src: url('assets/NTBrickSans.otf') format('opentype'),
+        url('assets/NTBrickSans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     /* Enhanced Color Palette - Futuristic Neon */
     --color-bg: #0a0a0f;
@@ -73,13 +83,13 @@
         0 0 20px rgba(255, 255, 255, 0.3);
 
     /* Typography - Specific Font Assignments */
-    --font-heading: 'Orbitron', 'CustomHeading', sans-serif;
+    --font-heading: 'NTBrickSans', sans-serif;
     /* AAYAM / HERO headings */
-    --font-rotating: 'Rajdhani', sans-serif;
+    --font-rotating: 'NTBrickSans', sans-serif;
     /* Rotating tech words */
-    --font-body: 'Inter', 'CustomBody', sans-serif;
+    --font-body: 'NTBrickSans', sans-serif;
     /* Body / Buttons / Forms */
-    --font-ui: 'Inter', sans-serif;
+    --font-ui: 'NTBrickSans', sans-serif;
     /* UI elements */
 
     /* Spacing System */
@@ -230,7 +240,8 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 5rem;
+    padding: 1rem 5%;
+    /* Responsive padding */
     position: fixed;
     top: 0;
     left: 0;
@@ -250,15 +261,32 @@ body::before {
 }
 
 .brand-logo {
-    font-family: var(--font-heading);
     display: flex;
     align-items: center;
-    gap: 1.2rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 70px;
+    /* Increased height for better visibility */
 }
 
 .brand-logo:hover {
-    transform: scale(1.03);
+    transform: scale(1.05) rotate(2deg);
+    /* Interactive tilt */
+    filter: drop-shadow(0 0 15px rgba(255, 0, 214, 0.6));
+    /* Glow effect */
+}
+
+.nav-logo-img {
+    height: 60px;
+    /* Adjusted height */
+}
+
+.nav-logo-icon {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    margin-right: 15px;
+    /* Spacing between icon and text */
+    filter: drop-shadow(0 0 5px rgba(255, 0, 214, 0.4));
 }
 
 .brand-main {
@@ -417,13 +445,29 @@ body::before {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 0.85fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 0.6fr 1fr;
+    /* Ratio approx 37% - 62% */
+    gap: 1rem;
     align-items: center;
     justify-content: space-between;
+    text-align: left;
+    padding-top: 0;
+    width: 95%;
+    /* Use slightly more width */
+    max-width: 1600px;
 }
 
-/* Left Column - Enhanced Typography */
+/* Left Column - Revert to Left Align */
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align flex items to start */
+    max-width: 100%;
+    z-index: 2;
+    text-align: left;
+}
+
 .hero-overline {
     font-family: var(--font-heading);
     color: #fff;
@@ -445,11 +489,12 @@ body::before {
 }
 
 .poster-headline {
-    font-family: var(--font-heading);
-    font-size: clamp(3.2rem, 6vw, 4rem);
+    font-family: 'NTBrickSans', sans-serif !important;
+    font-size: 3rem;
+    /* Reduced from clamp(3.2rem, 6vw, 4rem) */
     line-height: 1;
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     font-weight: 800;
     background: linear-gradient(135deg, #fff 0%, var(--color-gray-light) 100%);
     -webkit-background-clip: text;
@@ -457,15 +502,21 @@ body::before {
     background-clip: text;
     letter-spacing: -1px;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    text-align: left;
 }
 
 .poster-headline .text-pink {
     color: var(--color-pink);
     -webkit-text-fill-color: var(--color-pink);
     background: none;
-    text-shadow: var(--glow-pink-strong);
+    text-shadow: 0 0 10px rgba(255, 0, 214, 0.5);
+    /* Simple glow, no glitch */
     font-weight: 800;
-    font-size: clamp(3rem, 6vw, 12rem);
+    font-size: 4rem;
+    /* Reduced from clamp */
+    display: block;
+    /* Ensure it sits on its own line correctly */
+    margin-top: 0.5rem;
 }
 
 
@@ -474,7 +525,7 @@ body::before {
     padding-right: 0px;
 }
 
-/* Rotating Text Animation - Smooth Fade instead of Glitch/Flip */
+/* Fixed layout for pink text - removed animation/glitch */
 .rotating-text {
     display: inline-block;
     font-family: var(--font-rotating);
@@ -483,64 +534,25 @@ body::before {
     background: none !important;
     background-clip: unset !important;
     -webkit-background-clip: unset !important;
-    min-width: 650px;
-    width: 650px;
+    min-width: 400px;
+    /* Fixed width to prevent moving */
     text-align: left;
     vertical-align: baseline;
-    perspective: 1000px;
     position: relative;
-    will-change: transform;
     white-space: nowrap;
     overflow: visible;
-    text-shadow: var(--glow-pink-strong);
+    text-shadow: 0 0 15px rgba(255, 0, 214, 0.6);
     filter: none;
 }
 
 .rotating-text .char {
     display: inline-block;
-    transition: opacity 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-    /* Only opacity transition */
-    will-change: opacity;
-    transform-origin: center center;
-    min-width: 0.6em;
-    text-align: center;
+    /* Removed flip animation */
+    opacity: 1;
+    transform: none;
 }
 
-.rotating-text .char.flip {
-    animation: flipChar 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
-}
-
-@keyframes flipChar {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    45% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    50% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    55% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    60% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
+/* Removed @keyframes flipChar */
 
 @keyframes textFade {
     0% {
@@ -573,6 +585,9 @@ body::before {
     flex-direction: column;
     gap: 1.2rem;
     max-width: 480px;
+    align-items: flex-start;
+    /* Left align form inputs */
+    width: 100%;
 }
 
 .input-skew {
@@ -608,9 +623,11 @@ body::before {
     background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-purple) 100%);
     color: #fff;
     border: none;
-    padding: 1.4rem 2.2rem;
+    padding: 1rem 1.8rem;
+    /* Reduced padding */
     font-family: var(--font-body);
-    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    font-size: 1.2rem;
+    /* Reduced size */
     font-weight: 800;
     text-transform: uppercase;
     cursor: pointer;
@@ -620,9 +637,12 @@ body::before {
     box-shadow: var(--glow-pink);
     position: relative;
     overflow: hidden;
-    min-height: 64px;
+    min-height: 50px;
+    /* Reduced height */
     touch-action: manipulation;
     letter-spacing: 1.5px;
+    width: auto;
+    max-width: 350px;
 }
 
 .btn-skew-pink::before {
@@ -652,14 +672,18 @@ body::before {
     transform: translateY(0) scale(0.98);
 }
 
-/* Right */
+/* Right Side */
 .hero-right {
     position: relative;
-    height: 600px;
+    height: 550px;
+    /* Increased height slightly */
+    width: 100%;
     display: flex;
-    justify-content: left;
-    align-items: end;
-    /* background-color: aqua; */
+    justify-content: center;
+    /* Center content within right column */
+    align-items: center;
+    transform: scale(0.95);
+    /* Increased scale slightly */
 }
 
 .graphic-composition {
@@ -676,14 +700,14 @@ body::before {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 800px;
-    height: 800px;
+    width: 720px;
+    /* Increased from 600px */
+    height: 720px;
+    /* Increased from 600px */
     background: url(./assets/asset\ 53.svg);
     transform: translate(-50%, -50%);
     z-index: 1;
     border-radius: 20px;
-    filter: drop-shadow(0 0 30px rgba(255, 0, 214, 0.1));
-    transition: filter 0.3s ease;
 }
 
 .big-x:hover {
@@ -748,15 +772,16 @@ body::before {
 }
 
 .massive-ayam {
-    font-family: var(--font-heading);
-    font-size: 16rem;
+    font-family: 'NTBrickSans', var(--font-heading);
+    font-size: 13rem;
+    /* Increased from 10rem */
     line-height: 0.75;
     font-weight: 900;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: -8px;
+    letter-spacing: -6px;
     z-index: 5;
-    text-shadow: 6px 6px 0px #000, 12px 12px 0px rgba(255, 0, 214, 0.2);
+    text-shadow: 5px 5px 0px #000, 10px 10px 0px rgba(255, 0, 214, 0.2);
     margin: 0;
     padding: 0;
 }
@@ -765,11 +790,14 @@ body::before {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 120%;
+    width: 100%;
+    /* Reduced from 120% to fit better */
     height: auto;
     transform: translate(-50%, -50%);
+    /* Strictly center */
     pointer-events: none;
     z-index: 10;
+    display: none;
 }
 
 .pink-bar-container {
@@ -781,17 +809,14 @@ body::before {
     background: var(--color-pink);
     color: #fff;
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: 2.5rem;
+    /* Increased from 2rem */
     font-weight: 900;
-    padding: 0.8rem 4rem;
+    padding: 0.7rem 3.5rem;
     transform: skew(-10deg);
     border-radius: 0px;
-    letter-spacing: 4px;
-    box-shadow: 0 0 45px rgba(255, 0, 214, 0.6),
-        0 0 90px rgba(255, 0, 214, 0.3);
-    font-style: italic;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+    letter-spacing: 3px;
+    box-shadow: 0 0 40px rgba(255, 0, 214, 0.6);
 }
 
 .pink-bar:hover {
@@ -3478,41 +3503,84 @@ body::before {
 }
 
 /* Buy Button */
+/* Merch Typography Refinement */
+/* Merch Typography Refinement */
+.merch-title-large {
+    font-family: 'NTBrickSans', sans-serif;
+    /* Pixel/Block font */
+    font-weight: 700;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.merch-desc {
+    font-family: 'NTBrickSans', sans-serif;
+    font-size: 1.2rem;
+    color: var(--color-gray-light);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.merch-price-tag {
+    font-family: 'NTBrickSans', sans-serif;
+    font-size: 1.8rem;
+    color: var(--color-pink);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 15px rgba(255, 0, 214, 0.4);
+}
+
+.merch-tab {
+    font-family: 'NTBrickSans', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-buy-neon span {
+    font-family: 'NTBrickSans', sans-serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* Buy Button - Updated to White Block Style */
 .btn-buy-neon {
     position: relative;
-    padding: 1rem 3rem;
-    background: linear-gradient(90deg, #d500f9, #ff00d6);
+    padding: 0.8rem 3rem;
+    background: #fff;
+    /* Solid white */
     border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-family: 'Orbitron', sans-serif;
+    border-radius: 2px;
+    /* Slight rounded corners but mostly square */
+    color: #000;
+    /* Black text */
+    font-family: 'NTBrickSans', sans-serif;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
     width: fit-content;
     text-transform: uppercase;
     letter-spacing: 2px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .btn-buy-neon:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(213, 0, 249, 0.6);
+    background: #f0f0f0;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
 }
 
 .btn-glow {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-    transition: left 0.5s ease;
-}
-
-.btn-buy-neon:hover .btn-glow {
-    left: 100%;
+    display: none;
+    /* Removed internal glow for clean block look */
 }
 
 /* Deco Text */
@@ -3572,5 +3640,882 @@ body::before {
 
     .merch-title-large {
         font-size: 2.2rem;
+    }
+}
+
+/* Responsive Typography Adjustments for New Font and Logo */
+@media (max-width: 768px) {
+    .massive-ayam {
+        font-size: 6rem;
+        line-height: 1;
+        letter-spacing: -2px;
+    }
+
+    .pink-bar {
+        font-size: 1.5rem;
+        padding: 0.5rem 2rem;
+    }
+
+    .brand-logo {
+        height: 40px;
+    }
+
+    .nav-menu {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        gap: 1rem;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        width: 100%;
+        justify-content: flex-start;
+        padding-right: 1rem;
+        /* Prevent cut-off */
+        scrollbar-width: none;
+        /* Hide scrollbar Firefox */
+    }
+
+    .nav-menu::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar Chrome/Safari */
+    }
+}
+
+@media (max-width: 480px) {
+    .massive-ayam {
+        font-size: 18vw;
+        /* Viewport based for very small screens */
+    }
+}
+
+/* Footer Logo Styling */
+.footer-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.footer-logo-img {
+    height: 120px;
+    /* Adjust size as needed */
+    width: auto;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 10px rgba(255, 0, 214, 0.3));
+}
+
+.footer-logo-img:hover {
+    transform: scale(1.1) rotate(-2deg);
+    filter: drop-shadow(0 0 25px rgba(255, 0, 214, 0.6));
+}
+
+/* Style fixes for brand text and logo flex layout */
+.brand-text-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    /* Space between text and logo */
+}
+
+/* Ensure the logo image doesn't dominate if text is present */
+.nav-logo-img {
+    height: 50px;
+    /* Slightly smaller to match text height */
+    width: auto;
+}
+
+/* Ensure massive text uses the font properly */
+.massive-ayam {
+    font-family: 'NTBrickSans', sans-serif !important;
+}
+
+/* Ensure poster headline and other main headings use the pixel font */
+.poster-headline {
+    font-family: 'NTBrickSans', sans-serif !important;
+}
+
+.section-heading,
+.section-heading-neon,
+.footer-heading {
+    font-family: 'NTBrickSans', sans-serif !important;
+}
+
+/* Make nav logo cleaner */
+.nav-logo-img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Center the poster form inputs and button */
+.poster-form {
+    align-items: center;
+    width: 100%;
+}
+
+.input-skew {
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn-skew-pink {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Ensure desktop alignment overrides any lingering center styles */
+@media (min-width: 769px) {
+    .poster-headline {
+        text-align: left;
+    }
+
+    .hero-grid {
+        text-align: left;
+    }
+}
+
+/* Ensure mobile stacking remains */
+@media (max-width: 768px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-left {
+        align-items: center;
+        text-align: center;
+    }
+
+    .poster-form {
+        align-items: center;
+    }
+
+    .rotating-text {
+        text-align: center;
+        white-space: normal;
+    }
+}
+
+/* Force remove any lingering glitch effects on hero text */
+.poster-headline .text-pink {
+    animation: none !important;
+    transform: none !important;
+}
+
+.rotating-text {
+    animation: none !important;
+}
+
+/* Ensure desktop alignment overrides any lingering center styles */
+@media (min-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 0.6fr 1fr;
+        /* 37% - 63% on large screens */
+    }
+}
+
+/* Adjust star icon size if huge */
+.star-icon {
+    font-size: 6rem;
+    /* Reduced from 10rem */
+    width: 40px;
+    height: 40px;
+    top: -40px;
+}
+
+/* Ensure massive text group creates a proper stacking context for centering */
+.massive-text-group {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* ========================================
+   ANTI-GRAVITY EVENTS CALENDAR
+   ======================================== */
+.events-section {
+    position: relative;
+    padding: 6rem 0;
+    overflow: hidden;
+    background: #0b0b0f;
+    /* Dark background */
+    min-height: 100vh;
+}
+
+/* Background Grid Texture */
+.events-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.events-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Day Selector Tabs */
+.calendar-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.calendar-tab {
+    background: transparent;
+    border: none;
+    color: var(--color-gray);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.calendar-tab:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.calendar-tab.active {
+    color: var(--color-pink);
+    text-shadow: 0 0 15px rgba(255, 0, 214, 0.6);
+}
+
+.calendar-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-pink);
+    box-shadow: 0 0 10px var(--color-pink);
+    border-radius: 2px;
+}
+
+/* Filters */
+.calendar-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-gray-light);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: rgba(255, 0, 214, 0.15);
+    border-color: var(--color-pink);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 214, 0.2);
+}
+
+/* Timeline Structure */
+.timeline-container {
+    position: relative;
+    padding: 2rem 0;
+    min-height: 500px;
+}
+
+/* Center Line */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--color-pink), transparent);
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px var(--color-pink);
+    z-index: 0;
+}
+
+/* Event Item */
+.timeline-item {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* Space out time and card */
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Alternating Layout */
+/* Odd items: Time Left, Card Right */
+.timeline-item:nth-child(odd) {
+    flex-direction: row;
+}
+
+.timeline-item:nth-child(odd) .event-time-wrapper {
+    width: 45%;
+    text-align: right;
+    padding-right: 3rem;
+}
+
+.timeline-item:nth-child(odd) .event-card-wrapper {
+    width: 45%;
+    padding-left: 0;
+}
+
+/* Even items: Card Left, Time Right */
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-item:nth-child(even) .event-time-wrapper {
+    width: 45%;
+    text-align: left;
+    padding-left: 3rem;
+}
+
+.timeline-item:nth-child(even) .event-card-wrapper {
+    width: 45%;
+    padding-right: 0;
+}
+
+/* Time Styling */
+.event-time-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.event-time {
+    font-family: 'NTBrickSans', sans-serif;
+    font-size: 2rem;
+    color: var(--color-pink);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 0, 214, 0.4);
+}
+
+.event-category {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+/* Connector Dot */
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background: #0b0b0f;
+    border: 2px solid var(--color-pink);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 0 0 10px var(--color-pink);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+    background: var(--color-pink);
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 20px var(--color-pink);
+}
+
+/* Floating Card */
+.event-card-wrapper {
+    perspective: 1000px;
+}
+
+.anti-gravity-card {
+    /* Transparent background with lined theme graph (grid) */
+    background-image:
+        linear-gradient(rgba(255, 0, 214, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 214, 0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-color: rgba(5, 5, 10, 0.2);
+    /* Very mostly transparent */
+
+    backdrop-filter: blur(4px);
+    /* Light blur */
+    border: 1px solid rgba(255, 0, 214, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 15px rgba(255, 0, 214, 0.1);
+    /* Subtle neon glow */
+    animation: floatingCard 6s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.5s);
+}
+
+/* Individual float offsets to make them feel organic */
+@keyframes floatingCard {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.anti-gravity-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(255, 0, 214, 0.5);
+    box-shadow: 0 15px 40px rgba(255, 0, 214, 0.15);
+    background: rgba(25, 25, 40, 0.8);
+    animation-play-state: paused;
+    /* Stop floating on hover for stability */
+}
+
+.card-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.card-content p {
+    font-family: var(--font-ui);
+    color: var(--color-gray-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.card-meta {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-gray);
+    font-family: var(--font-ui);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.meta-item i {
+    color: var(--color-pink);
+}
+
+/* Modal Styling */
+.event-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.event-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.event-modal {
+    background: #111;
+    border: 1px solid var(--color-pink);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 50px rgba(255, 0, 214, 0.2);
+}
+
+.event-modal-overlay.open .event-modal {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: var(--color-pink);
+}
+
+.modal-title {
+    font-family: 'NTBrickSans', sans-serif;
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.modal-time {
+    color: var(--color-pink);
+    font-size: 1.2rem;
+    font-family: var(--font-ui);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.modal-desc {
+    color: #ccc;
+    font-family: var(--font-ui);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.btn-modal-action {
+    background: var(--color-pink);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-modal-action:hover {
+    background: #d500f9;
+    box-shadow: 0 0 20px rgba(213, 0, 249, 0.5);
+}
+
+/* Responsive Timeline */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+    }
+
+    .timeline-item {
+        flex-direction: column !important;
+        /* Force stack */
+        padding-left: 50px;
+        margin-bottom: 3rem;
+    }
+
+    .timeline-item:nth-child(odd) .event-time-wrapper,
+    .timeline-item:nth-child(even) .event-time-wrapper {
+        width: 100%;
+        text-align: left;
+        padding: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-item:nth-child(odd) .event-card-wrapper,
+    .timeline-item:nth-child(even) .event-card-wrapper {
+        width: 100%;
+        padding: 0;
+    }
+
+    .timeline-dot {
+        left: 20px;
+        top: 2rem;
+        /* Align with time text approx */
+        transform: translate(-50%, -50%);
+    }
+
+    .timeline-item:hover .timeline-dot {
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+
+    .calendar-tabs {
+        gap: 1.5rem;
+    }
+
+    .calendar-tab {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-logo-icon {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .nav-logo-img {
+        height: 35px;
+    }
+
+    .top-nav {
+        padding: 0.8rem 1rem;
+    }
+
+    .poster-headline {
+        font-size: 2.2rem;
+    }
+
+    .poster-headline .text-pink {
+        font-size: 2.8rem;
+    }
+
+    .btn-skew-pink {
+        width: 100%;
+        max-width: 100%;
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .calendar-tabs {
+        gap: 1rem;
+    }
+
+    .calendar-tab {
+        font-size: 0.9rem;
+        padding-bottom: 0.2rem;
+    }
+
+    .filter-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .event-modal {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .modal-title {
+        font-size: 1.8rem;
+    }
+
+    .modal-time {
+        font-size: 1rem;
+    }
+}
+
+/* Footer Responsive Fix */
+@media (max-width: 768px) {
+    .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .footer-col {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .contact-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+/* =========================================
+   ADDITIONAL MOBILE RESPONSIVENESS
+   ========================================= */
+
+/* Tablet & Mobile Improvements (max-width: 768px) */
+@media (max-width: 768px) {
+    .section-heading-neon {
+        font-size: 2.5rem;
+        /* Scale down heading */
+    }
+
+    .merch-glass-container {
+        padding: 2rem 1.5rem;
+        /* Reduce padding */
+    }
+
+    /* Ensure Merch Image scales */
+    .merch-image-card {
+        width: 100%;
+        max-width: 320px;
+        /* Keep max width but allow shrinking */
+        height: auto;
+        aspect-ratio: 4/5;
+        /* Maintain aspect ratio */
+    }
+
+    /* Adjust Featured Carousel for Tablet */
+    .carousel-slide {
+        min-width: 260px;
+        /* Slightly smaller min-width */
+    }
+
+    .event-card {
+        height: 450px;
+        /* Reduced height */
+    }
+}
+
+/* Mobile Specific (max-width: 480px) */
+@media (max-width: 480px) {
+
+    /* Navbar Compacting */
+    .top-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .brand-logo {
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-menu {
+        width: 100%;
+        justify-content: center;
+        /* Center links */
+        padding-right: 0;
+    }
+
+    /* Typography Scaling */
+    .poster-headline {
+        font-size: 2rem;
+    }
+
+    .section-heading-neon {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    .merch-title-large {
+        font-size: 2rem;
+    }
+
+    /* Carousel on Mobile */
+    .carousel-wrapper {
+        padding: 0 1rem;
+    }
+
+    .carousel-slide {
+        min-width: 85vw;
+        /* Almost full width for mobile focus */
+        margin: 0 5px;
+    }
+
+    .event-card {
+        height: 400px;
+        /* Shorter card */
+    }
+
+    .card-details {
+        padding: 1.5rem;
+    }
+
+    .event-title {
+        font-size: 1.5rem;
+    }
+
+    /* Timeline Mobile */
+    .timeline-container {
+        padding: 0;
+    }
+
+    .timeline-item {
+        padding-left: 30px;
+        /* Less indentation */
+    }
+
+    .timeline-line {
+        left: 10px;
+    }
+
+    .timeline-dot {
+        left: 10px;
+    }
+
+    .event-time {
+        font-size: 1.5rem;
+    }
+
+    /* Merch Mobile */
+    .merch-content-grid {
+        gap: 2rem;
+    }
+
+    .merch-arrow {
+        width: 35px;
+        height: 35px;
+    }
+
+    /* Footer Mobile */
+    .footer-logo-img {
+        height: 80px;
+    }
+
+    .footer-socials {
+        gap: 1rem;
+    }
+
+    .social-link i {
+        font-size: 1.2rem;
+    }
+}
+
+/* Small Mobile (max-width: 360px) */
+@media (max-width: 360px) {
+    .calendar-tab {
+        font-size: 0.8rem;
+    }
+
+    .filter-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
     }
 }

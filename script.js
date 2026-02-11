@@ -858,7 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const descEl = document.getElementById('merch-desc');
     const priceEl = document.getElementById('merch-price');
     const imgEl = document.querySelector('.merch-img.main-img');
-    
+
     // Tab Elements
     const tabs = document.querySelectorAll('.merch-tab');
     const indicator = document.querySelector('.merch-tab-indicator');
@@ -872,7 +872,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryData = merchData[currentCategory];
         // Safety check
         if (!categoryData || categoryData.length === 0) return;
-        
+
         // Ensure index is within bounds (looping)
         if (currentProductIndex >= categoryData.length) currentProductIndex = 0;
         if (currentProductIndex < 0) currentProductIndex = categoryData.length - 1;
@@ -909,8 +909,8 @@ document.addEventListener('DOMContentLoaded', () => {
             onComplete: () => {
                 imgEl.src = product.image;
                 // Handle missing image
-                imgEl.onerror = () => { imgEl.src = 'assets/merch-tshirt.png'; }; 
-                
+                imgEl.onerror = () => { imgEl.src = 'assets/merch-tshirt.png'; };
+
                 gsap.to(imgEl, {
                     scale: 1,
                     opacity: 1,
@@ -923,10 +923,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tab Logic
     function moveIndicator(activeTab) {
-        if(!activeTab) return;
+        if (!activeTab) return;
         const width = activeTab.offsetWidth;
         const left = activeTab.offsetLeft;
-        
+
         indicator.style.width = `${width}px`;
         indicator.style.left = `${left}px`;
     }
@@ -936,14 +936,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update Active State
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            
+
             // Move Indicator
             moveIndicator(tab);
 
             // Update Category
             currentCategory = tab.dataset.category;
             currentProductIndex = 0; // Reset index for new category
-            
+
             updateMerchUI();
         });
     });
@@ -972,4 +972,199 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeTab = document.querySelector('.merch-tab.active');
         moveIndicator(activeTab);
     });
+});
+
+// --- 9. INTERACTIVE EVENT CALENDAR (ANTI-GRAVITY) ---
+document.addEventListener('DOMContentLoaded', () => {
+    const timelineContainer = document.getElementById('timelineContainer');
+    if (!timelineContainer) return;
+
+    // --- EVENT DATA ---
+    const eventData = {
+        0: [
+            { id: 1, title: 'Inauguration', time: '9:00 AM – 10:30 AM', category: 'Talk', desc: 'Grand inauguration of AAYAM 2026. S.V. Seminar Hall', location: 'S.V. Seminar Hall' },
+            { id: 2, title: 'Defence Exhibition', time: '10:30 AM – 12:00 PM', category: 'Exhibition', desc: 'Showcasing defense technology. RNT Ground', location: 'RNT Ground' },
+            { id: 3, title: 'MUN Day 1 (Begins)', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Model United Nations session 1. MB-100', location: 'MB-100' },
+            { id: 4, title: 'Aayam Cinematica (Theme Reveal)', time: '10:30 AM – 12:00 PM', category: 'Cultural', desc: 'Cinematic theme reveal. Online', location: 'Online' },
+            { id: 5, title: 'Guesstimate', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Estimation competition. Online', location: 'Online' },
+            { id: 6, title: 'On Campus 2D Workshop', time: '11:30 AM – 1:00 PM', category: 'Workshop', desc: '2D design workshop. Virtual Classroom', location: 'Virtual Classroom' },
+            { id: 7, title: 'Technothon', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Technical marathon. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
+            { id: 8, title: 'Reverse Shark Tank', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Entrepreneurship competition. CE 201', location: 'CE 201' },
+            { id: 9, title: 'AI/ML Workshop', time: '2:00 PM – 3:30 PM', category: 'Workshop', desc: 'Artificial Intelligence workshop. CE 201', location: 'CE 201' },
+            { id: 10, title: 'Phewsion’s Gaming Stall', time: '2:00 PM – 7:00 PM', category: 'Exhibition', desc: 'Gaming experience zone. RNT Ground', location: 'RNT Ground' },
+            { id: 11, title: 'DSAI Exhibition', time: '2:00 PM – 7:00 PM', category: 'Exhibition', desc: 'Data Science & AI exhibition.', location: 'RNT Ground' },
+            { id: 12, title: 'CITC Exhibition', time: '2:00 PM – 7:00 PM', category: 'Exhibition', desc: 'CITC Project showcase.', location: 'RNT Ground' },
+            { id: 13, title: 'MUN Day 1 (Ends)', time: '2:00 PM – 7:00 PM', category: 'Tech', desc: 'Conclusion of Day 1 MUN. MB-100', location: 'MB-100' },
+            { id: 14, title: 'Star Gazing', time: '6:30 PM – 7:30 PM', category: 'Cultural', desc: 'Astronomy session. SAC Rooftop', location: 'SAC Rooftop' },
+            { id: 15, title: 'Speaker Session', time: '7:30 PM – 9:30 PM', category: 'Talk', desc: 'Guest speakers and insights. RNT Ground (Main Stage)', location: 'RNT Ground (Main Stage)' }
+        ],
+        1: [
+            { id: 16, title: 'Women Panel', time: '9:00 AM – 10:30 AM', category: 'Talk', desc: 'Discussion on women in tech. S.V. Seminar Hall', location: 'S.V. Seminar Hall' },
+            { id: 17, title: 'Pixels Workshop', time: '10:30 AM – 12:00 PM', category: 'Workshop', desc: 'Design and creativity workshop. CSE G-07', location: 'CSE G-07' },
+            { id: 18, title: 'MUN Day 2 (Begins)', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Day 2 of Model United Nations. MB-100', location: 'MB-100' },
+            { id: 19, title: 'Automobile Expo', time: '11:30 AM – 1:00 PM', category: 'Exhibition', desc: 'Automotive technology showcase. RNT Ground', location: 'RNT Ground' },
+            { id: 20, title: 'Baja Roadshow', time: '11:30 AM – 1:00 PM', category: 'Exhibition', desc: 'Baja SAE vehicle display. RNT Ground', location: 'RNT Ground' },
+            { id: 21, title: 'Glider Competition', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Glider flying competition. RNT Ground', location: 'RNT Ground' },
+            { id: 22, title: 'Baja Design Competition', time: '2:00 PM – 3:30 PM', category: 'Tech', desc: 'Vehicle design challenge. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
+            { id: 23, title: 'Case Study (Day 1)', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Business case study competition. Virtual Classroom', location: 'Virtual Classroom' },
+            { id: 24, title: 'Hackathon Day 1', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Coding hackathon begins. CE-201', location: 'CE-201' },
+            { id: 25, title: 'Anarc Sumo War', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Robot sumo wrestling. RNT Ground', location: 'RNT Ground' },
+            { id: 26, title: 'Phewsion’s Gaming Stall', time: '2:00 PM – 6:30 PM', category: 'Exhibition', desc: 'Gaming zone. RNT Ground', location: 'RNT Ground' },
+            { id: 27, title: 'Designathon', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Design marathon. CSE G07', location: 'CSE G07' },
+            { id: 28, title: 'MUN Day 2 (Ends)', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Conclusion of Day 2 MUN. MB-100', location: 'MB-100' },
+            { id: 29, title: 'IPL Auction', time: '4:00 PM – 6:30 PM', category: 'Tech', desc: 'Mock IPL Auction. Visvesvaraya Auditorium', location: 'Visvesvaraya Auditorium' },
+            { id: 30, title: 'Star Gazing', time: '6:30 PM – 7:30 PM', category: 'Cultural', desc: 'Astronomy session. SAC Rooftop', location: 'SAC Rooftop' },
+            { id: 31, title: 'Prom and DJ Night', time: '8:00 PM – 9:30 PM', category: 'Cultural', desc: 'Musical night. RNT Ground Main Stage', location: 'RNT Ground Main Stage' }
+        ],
+        2: [
+            { id: 32, title: 'Creator’s Conclave', time: '9:00 AM – 10:00 AM', category: 'Talk', desc: 'Meet the creators. S.V. Seminar Hall', location: 'S.V. Seminar Hall' },
+            { id: 33, title: 'Anima Drone Race', time: '10:00 AM – 11:30 AM', category: 'Tech', desc: 'Drone racing competition. RNT Ground', location: 'RNT Ground' },
+            { id: 34, title: 'Hackathon Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Hackathon coding continues. CE 201', location: 'CE 201' },
+            { id: 35, title: 'Case Study Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Case study finals. Virtual Classroom', location: 'Virtual Classroom' },
+            { id: 36, title: 'Capture the Flag', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Cybersecurity competition. RNT Ground', location: 'RNT Ground' },
+            { id: 37, title: 'Hackathon/Winner Announcement', time: '2:00 PM – 3:00 PM', category: 'Talk', desc: 'Prize distribution ceremony. Visvesvaraya Auditorium', location: 'Visvesvaraya Auditorium' },
+            { id: 38, title: 'Debate on Tech', time: '2:00 PM – 3:00 PM', category: 'Tech', desc: 'Technology debate. Civil Gallery', location: 'Civil Gallery' },
+            { id: 39, title: 'CAD Workshop', time: '3:00 PM – 4:30 PM', category: 'Workshop', desc: 'Computer Aided Design workshop. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
+            { id: 40, title: 'Aayam Cinematica Screening', time: '5:00 PM – 6:30 PM', category: 'Cultural', desc: 'Short film screening. S.V. Auditorium', location: 'S.V. Auditorium' },
+            { id: 41, title: 'Cultural Event / Artist Night', time: '7:00 PM – 9:30 PM', category: 'Cultural', desc: 'Grand finale artist performance. RNT Ground Main Stage', location: 'RNT Ground Main Stage' }
+        ]
+    };
+
+    let currentDay = 0;
+    let currentFilter = 'all';
+
+    // --- RENDER TIMELINE ---
+    function renderTimeline() {
+        // Clear existing items (keep the line)
+        const line = timelineContainer.querySelector('.timeline-line');
+        timelineContainer.innerHTML = '';
+        timelineContainer.appendChild(line);
+
+        // Get data for day
+        const dayEvents = eventData[currentDay] || [];
+
+        // Application Filter
+        const filteredEvents = dayEvents.filter(event => {
+            if (currentFilter === 'all') return true;
+            return event.category === currentFilter;
+        });
+
+        if (filteredEvents.length === 0) {
+            const noEvents = document.createElement('div');
+            noEvents.style.textAlign = 'center';
+            noEvents.style.color = '#777';
+            noEvents.style.padding = '3rem';
+            noEvents.textContent = 'No events found for this category.';
+            timelineContainer.appendChild(noEvents);
+            return;
+        }
+
+        // Generate HTML
+        filteredEvents.forEach((event, index) => {
+            const item = document.createElement('div');
+            item.classList.add('timeline-item');
+
+            // Stagger animation delay
+            item.style.transitionDelay = `${index * 0.1}s`;
+
+            // Inner HTML structure
+            item.innerHTML = `
+                <div class="event-time-wrapper">
+                    <div class="event-time">${event.time}</div>
+                    <div class="event-category">${event.category}</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="event-card-wrapper" style="--i: ${index}">
+                    <div class="anti-gravity-card" onclick="openEventModal(${event.id})">
+                        <div class="card-content">
+                            <h3>${event.title}</h3>
+                            <p>${event.desc}</p>
+                            <div class="card-meta">
+                                <span class="meta-item"><i class="fa-solid fa-location-dot"></i> ${event.location}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            timelineContainer.appendChild(item);
+
+            // Trigger animation after append
+            setTimeout(() => {
+                item.classList.add('visible');
+            }, 50);
+        });
+    }
+
+    // --- TAB SWITCHING ---
+    const tabs = document.querySelectorAll('.calendar-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update active state
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Update day
+            currentDay = parseInt(tab.dataset.day);
+            renderTimeline();
+        });
+    });
+
+    // --- FILTER SWITCHING ---
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            currentFilter = btn.dataset.filter;
+            renderTimeline();
+        });
+    });
+
+    // Initial Render
+    renderTimeline();
+
+    // Make modal function global so onclick works
+    window.openEventModal = function (id) {
+        const modalOverlay = document.getElementById('eventModalOverlay');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalTime = document.getElementById('modalTime');
+        const modalDesc = document.getElementById('modalDesc');
+
+        // Find event
+        let event = null;
+        Object.values(eventData).forEach(day => {
+            const found = day.find(e => e.id === id);
+            if (found) event = found;
+        });
+
+        if (event) {
+            modalTitle.textContent = event.title;
+            modalTime.textContent = `${event.time} | ${event.location}`;
+            modalDesc.textContent = event.desc;
+            modalOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent bg scroll
+        }
+    };
+
+    // Close Modal Logic
+    const closeBtn = document.querySelector('.close-modal');
+    const modalOverlay = document.getElementById('eventModalOverlay');
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    }
+
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    }
 });
