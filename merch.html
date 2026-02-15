@@ -156,6 +156,84 @@
                 font-size: 2.5rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .merch-page-hero {
+                padding-top: 100px;
+                padding-bottom: 1rem;
+            }
+
+            .merch-page-title {
+                font-size: 2rem;
+            }
+
+            .merch-page-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .merch-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .merch-page-hero {
+                padding-top: 80px;
+                padding-bottom: 0.5rem;
+            }
+
+            .merch-page-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .merch-page-subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+
+            .product-showcase {
+                padding: 1rem 2%;
+            }
+
+            .merch-card {
+                padding: 1rem;
+                max-width: 100%;
+            }
+
+            .merch-image-wrapper {
+                height: 200px;
+                /* Reduce card image height */
+                margin-bottom: 1rem;
+            }
+
+            .merch-title {
+                font-size: 1.1rem;
+            }
+
+            .merch-desc {
+                font-size: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .merch-price {
+                font-size: 0.95rem;
+            }
+
+            .btn-merch-action {
+                font-size: 0.8rem;
+                padding: 0.7rem 0;
+                letter-spacing: 1px;
+            }
+
+            .step-title {
+                font-size: 1.3rem;
+            }
+
+            .payment-instructions {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 
@@ -167,13 +245,14 @@
             <img src="assets/logocolor.PNG" alt="AAYAM Color Logo" class="nav-logo-icon">
             <img src="assets/AAYAM.png" alt="AAYAM Logo" class="nav-logo-img">
         </a>
+        <!-- <a href="#register" class="btn-nav-ticket-mobile">STAY TUNED</a> -->
         <div class="nav-menu">
-            <a href="index.html" class="nav-link">Home</a>
+            <!-- <a href="index.html" class="nav-link">Home</a>
             <a href="events.html" class="nav-link">Events</a>
             <a href="sponsors.html" class="nav-link">Sponsors</a>
             <a href="merch.html" class="nav-link" style="color: var(--color-pink);">Merch <i class="fa-solid fa-tag"
                     style="font-size: 0.7em; vertical-align: super;"></i></a>
-            <a href="index.html#gallery" class="nav-link">Gallery</a>
+            <a href="index.html#gallery" class="nav-link">Gallery</a> -->
             <a href="#register" class="btn-nav-ticket">STAY TUNED</a>
         </div>
     </nav>
@@ -205,7 +284,7 @@
                             <span class="merch-price">₹ 599</span>
                             <button class="btn-buy-icon"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                        <a href="merch.html" class="btn-merch-action">PRE-ORDER NOW</a>
+                        <a href="#order-section" class="btn-merch-action">PRE-ORDER NOW</a>
                     </div>
                 </div>
 
@@ -224,7 +303,7 @@
                             <span class="merch-price">₹ 499</span>
                             <button class="btn-buy-icon"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                        <a href="merch.html" class="btn-merch-action">PRE-ORDER NOW</a>
+                        <a href="#order-section" class="btn-merch-action">PRE-ORDER NOW</a>
                     </div>
                 </div>
 
@@ -243,7 +322,7 @@
                             <span class="merch-price">₹ 549</span>
                             <button class="btn-buy-icon"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
-                        <a href="merch.html" class="btn-merch-action">PRE-ORDER NOW</a>
+                        <a href="#order-section" class="btn-merch-action">PRE-ORDER NOW</a>
                     </div>
                 </div>
             </div>
@@ -251,7 +330,7 @@
     </section>
 
     <!-- Pre-Order Redirect Section -->
-    <section class="order-redirect-section" style="padding: 4rem 1rem; text-align: center;">
+    <section id="order-section" class="order-redirect-section" style="padding: 4rem 1rem; text-align: center;">
         <div class="container" style="flex-direction: column; align-items: center; gap: 2rem;">
             <h2 class="step-title" style="max-width: 800px; margin: 0 auto;">READY TO COP THE DROP?</h2>
             <p style="color: var(--color-gray-light); max-width: 600px; margin: 0 auto; line-height: 1.6;">
