@@ -4933,10 +4933,10 @@ body::before {
 
 .floating-asset {
     position: absolute;
-    top: 10%;
+    top: 0%;
     left: -200px;
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     z-index: 90;
     pointer-events: none;
     animation: floatAcross 30s linear infinite;

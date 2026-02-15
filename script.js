@@ -101,6 +101,8 @@ initFloatingParticles();
 
 let sparkleThrottle = 0;
 document.addEventListener('mousemove', (e) => {
+    // Disable on mobile/tablet for better UX
+    if (window.innerWidth <= 768) return;
     // Trail Generation
     // Throttle creation to avoid lag
     sparkleThrottle++;
@@ -154,6 +156,8 @@ if (canvas) {
 
     // Track mouse
     document.addEventListener('mousemove', (e) => {
+        // Disable on mobile/tablet
+        if (window.innerWidth <= 768) return;
         // Add point to queue
         points.push({ x: e.clientX, y: e.clientY });
     });
