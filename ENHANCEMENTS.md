@@ -61,6 +61,7 @@
 
 ## 🔧 Technical Improvements
 
+
 ### Performance
 - ✅ `will-change` optimization for animations
 - ✅ `backface-visibility: hidden` to prevent flicker
