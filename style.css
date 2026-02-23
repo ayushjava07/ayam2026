@@ -5239,6 +5239,54 @@ body::before {
     font-weight: 600;
 }
 
+/* ── Event Vibe Toast ── */
+.event-vibe-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(0, 0, 0, 0.92);
+    border: 1px solid #ff00ff;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
+    padding: 16px 30px;
+    border-radius: 10px;
+    font-family: var(--font-heading);
+    font-size: 0.55rem;
+    color: #ffffff;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    min-width: 240px;
+}
+
+.event-vibe-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast-emoji {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.toast-title {
+    color: #ff00ff;
+    display: block;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.toast-sub {
+    color: #aaa;
+    font-size: 0.42rem;
+    display: block;
+    letter-spacing: 1px;
+}
+
 /* Modal Styling */
 .event-modal-overlay {
     position: fixed;

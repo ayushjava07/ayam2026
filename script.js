@@ -908,10 +908,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Stagger animation delay
             item.style.transitionDelay = `${index * 0.1}s`;
 
-            // Registration button
-            const regBtn = event.registerLink
-                ? `<a href="${event.registerLink}" target="_blank" class="event-register-btn" onclick="event.stopPropagation()">⚡ REGISTER NOW</a>`
-                : `<button class="event-coming-soon-btn" disabled onclick="event.stopPropagation()">🔒 REGISTRATION OPENING SOON</button>`;
+            // Registration button — only for Tech (competition) events
+            let regBtn = '';
+            if (event.category === 'Tech') {
+                regBtn = event.registerLink
+                    ? `<a href="${event.registerLink}" target="_blank" class="event-register-btn" onclick="event.stopPropagation()">⚡ REGISTER NOW</a>`
+                    : `<button class="event-coming-soon-btn" disabled onclick="event.stopPropagation()">🔒 REGISTRATION OPENING SOON</button>`;
+            }
 
             // Inner HTML structure
             item.innerHTML = `
@@ -972,6 +975,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Render
     renderTimeline();
 
+    // --- CATEGORY VIBE MESSAGES ---
+    const categoryMessages = {
+        'Talk': { emoji: '🎤', text: 'FEEL THE SPEAKER VIBE', sub: 'Get inspired by industry legends' },
+        'Workshop': { emoji: '🛠️', text: 'LEVEL UP YOUR SKILLS', sub: 'Hands-on. Real. Powerful.' },
+        'Exhibition': { emoji: '🚀', text: 'WITNESS THE FUTURE', sub: "Tech you've never seen before" },
+        'Cultural': { emoji: '🔥', text: 'FEEL THE ENERGY', sub: 'Lose yourself in the moment' },
+        'Tech': { emoji: '⚡', text: 'ENTER THE ARENA', sub: 'Compete. Build. Dominate.' }
+    };
+
+    window.showEventVibe = function (category) {
+        const toast = document.getElementById('event-toast');
+        if (!toast) return;
+        const msg = categoryMessages[category] || categoryMessages['Tech'];
+        toast.innerHTML = `
+            <span class="toast-emoji">${msg.emoji}</span>
+            <span class="toast-title">${msg.text}</span>
+            <span class="toast-sub">${msg.sub}</span>
+        `;
+        toast.classList.remove('show');
+        // Force reflow so re-triggering the animation works
+        void toast.offsetWidth;
+        toast.classList.add('show');
+        clearTimeout(toast._hideTimer);
+        toast._hideTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+    };
+
     // Make modal function global so onclick works
     window.openEventModal = function (id) {
         const modalOverlay = document.getElementById('eventModalOverlay');
@@ -987,11 +1016,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (event) {
+            showEventVibe(event.category);
             modalTitle.textContent = event.title;
             modalTime.textContent = `${event.time} | ${event.location}`;
             modalDesc.textContent = event.desc;
             modalOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden'; // Prevent bg scroll
+            document.body.style.overflow = 'hidden';
         }
     };
 
