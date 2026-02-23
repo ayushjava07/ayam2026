@@ -1207,6 +1207,29 @@ body::before {
     text-shadow: 5px 5px 0px #000, 10px 10px 0px rgba(255, 0, 214, 0.2);
     margin: 0;
     padding: 0;
+    /* GPU compositing — fixes GSAP visibility & mobile lag */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* GPU hints for all GSAP-animated hero elements */
+.hero-overline,
+.poster-headline,
+.poster-desc,
+.poster-form,
+.big-x,
+.pink-ring-img,
+.star-icon,
+.bottom-stats,
+.tagline,
+.ufo-mascot,
+.trusted-section {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .pink-ring-img {

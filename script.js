@@ -213,6 +213,8 @@ if (canvas) {
 }
 
 // --- 4. ENHANCED GSAP ENTRANCE ANIMATIONS ---
+gsap.config({ nullTargetWarn: false }); // suppress 'target not found' warnings
+
 window.addEventListener('load', () => {
     // Smooth fade-in for the entire page
     gsap.from('body', {
@@ -264,7 +266,7 @@ window.addEventListener('load', () => {
         delay: 0.4
     });
 
-    gsap.from('.massive-aayam', {
+    gsap.from('.massive-ayam', {
         opacity: 0,
         y: 60,
         scale: 0.95,
@@ -280,14 +282,6 @@ window.addEventListener('load', () => {
         duration: 1.2,
         delay: 1,
         ease: "back.out(1.2)"
-    });
-
-    gsap.from('.pink-bar-container', {
-        scaleX: 0,
-        opacity: 0,
-        duration: 0.8,
-        delay: 1.1,
-        ease: "power2.out"
     });
 
     gsap.from('.star-icon', {
@@ -360,6 +354,8 @@ window.addEventListener('load', () => {
         });
     }
 
+    // Refresh ScrollTrigger after everything is loaded
+    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
 });
 
 // --- 5. INPUT INTERACTION ---
