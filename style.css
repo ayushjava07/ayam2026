@@ -5193,6 +5193,52 @@ body::before {
     color: var(--color-pink);
 }
 
+/* ── Event Card Registration Buttons ── */
+.event-register-btn {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px 0;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    background: #ff00ff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.event-register-btn:hover {
+    background: #ffffff;
+    color: #ff00ff;
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px rgba(255, 0, 255, 0.3);
+    transform: scale(1.03);
+}
+
+.event-coming-soon-btn {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px 0;
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #aaa;
+    background: transparent;
+    border: 1px dashed #666;
+    border-radius: 4px;
+    cursor: not-allowed;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
 /* Modal Styling */
 .event-modal-overlay {
     position: fixed;
