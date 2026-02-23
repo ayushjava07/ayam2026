@@ -1047,12 +1047,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeMenu() {
         if (navMenu) navMenu.classList.remove('active');
         if (navOverlay) navOverlay.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
     }
 
     if (hamburgerBtn && navMenu) {
         hamburgerBtn.addEventListener('click', () => {
             navMenu.classList.add('active');
             if (navOverlay) navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
         });
 
         if (closeBtn) {
