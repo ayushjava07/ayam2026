@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPONSORS | AAYAM 2026</title>
 
+  <link rel="icon" type="image/png" href="assets/logocolor.PNG">
+
   <!-- Premium Bold Fonts for Tech Fest -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,82 +36,106 @@
   <!-- Navbar -->
   <nav class="top-nav">
     <a href="index.html" class="brand-logo" style="text-decoration: none;">
-      <span class="brand-main">AAYAM</span>
-      <span class="brand-sub">NIT AGARTALA</span>
+      <img src="assets/logocolor.PNG" alt="AAYAM Color Logo" class="nav-logo-icon">
+      <img src="assets/AAYAM.png" alt="AAYAM Logo" class="nav-logo-img">
     </a>
-    <div class="nav-menu">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="index.html#events" class="nav-link">Events</a>
-      <a href="sponsors.html" class="nav-link active">Sponsors</a>
-      <a href="merch.html" class="nav-link">Merch <i class="fa-solid fa-tag"
+    <div class="hamburger-btn" id="hamburger-btn">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+    <div class="nav-menu" id="nav-menu">
+      <div class="mobile-nav-header">
+        <div class="mobile-brand-container">
+          <img src="assets/logocolor.PNG" alt="AAYAM" class="mobile-logo-img">
+          <img src="assets/AAYAM.png" alt="AAYAM Logo" class="mobile-brand-name-img" style="height: 32px;">
+        </div>
+        <button id="mobile-menu-close" class="mobile-menu-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <a href="index.html" class="nav-link" style="--i:1;"><i class="fa-solid fa-house mobile-icon"></i>Home</a>
+      <a href="events.html" class="nav-link" style="--i:2;"><i class="fa-regular fa-calendar mobile-icon"></i>Events</a>
+      <a href="sponsors.html" class="nav-link active" style="--i:3;"><i
+          class="fa-solid fa-star mobile-icon"></i>Sponsors</a>
+      <a href="merch.html" class="nav-link" style="--i:4;"><i class="fa-solid fa-bag-shopping mobile-icon"></i>Merch <i
+          class="fa-solid fa-tag desktop-tag"
           style="font-size: 0.7em; vertical-align: super; color: var(--color-pink);"></i></a>
-      <a href="index.html#gallery" class="nav-link">Gallery</a>
-      <a href="index.html#register" class="btn-nav-ticket">GET FREE TICKET</a>
+      <!-- <a href="#gallery" class="nav-link">Gallery</a> -->
+      <a href="index.html#register" class="btn-nav-ticket desktop-only">STAY TUNED</a>
+
+      <div class="mobile-nav-bottom">
+        <div class="mobile-socials">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-discord"></i></a>
+        </div>
+        <a href="index.html#register" class="mobile-btn-register">REGISTER NOW</a>
+      </div>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <header class="page-header">
-    <div class="header-content">
-      <h1 class="page-title">OUR SPONSORS <span class="slash">//</span></h1>
-      <p class="page-subtitle">POWERING THE FUTURE OF INNOVATION</p>
-    </div>
-  </header>
-
   <!-- Sponsors Section -->
   <section class="sponsors-section">
+    <!-- Floating Background Orbs -->
+    <div class="sponsors-bg-orb orb-1"></div>
+    <div class="sponsors-bg-orb orb-2"></div>
+    <div class="sponsors-bg-orb orb-3"></div>
+
     <div class="sponsors-container">
-
-      <div class="sponsors-grid">
-        <!-- Row 1 Left: Associate Title -->
-        <div class="sponsor-item">
-          <div class="sponsor-logo-box">
-            <img src="assets/logo-npci.png" alt="NPCI">
-          </div>
-          <div class="sponsor-label">Associate Title</div>
-        </div>
-
-        <!-- Row 1 Right: Powered By -->
-        <div class="sponsor-item">
-          <div class="sponsor-logo-box">
-            <img src="assets/logo-idfc.png" alt="IDFC First Bank">
-          </div>
-          <div class="sponsor-label">Powered By</div>
-        </div>
-
-        <!-- Row 2 Left: Experience Partner -->
-        <div class="sponsor-item">
-          <div class="sponsor-logo-box">
-            <img src="assets/logo-visava.png" alt="Visava Group">
-          </div>
-          <div class="sponsor-label">Experience Partner</div>
-        </div>
-
-        <!-- Row 2 Right: UPI Partner -->
-        <div class="sponsor-item">
-          <div class="sponsor-logo-box">
-            <img src="assets/logo-jio.png" alt="Jio UPI">
-          </div>
-          <div class="sponsor-label">UPI Partner</div>
-        </div>
-
-        <!-- Row 3 Left: Platinum Sponsor -->
-        <div class="sponsor-item">
-          <div class="sponsor-logo-box">
-            <img src="assets/logo-lt.png" alt="L&T">
-          </div>
-          <div class="sponsor-label">Platinum Sponsor</div>
-        </div>
-
-        <!-- Row 3 Right: Gold Sponsor -->
-        <div class="sponsor-item">
-          <div class="sponsor-logo-box">
-            <img src="assets/logo-blix.png" alt="Blix">
-          </div>
-          <div class="sponsor-label">Gold Sponsor</div>
-        </div>
+      <!-- HEADER -->
+      <div class="sponsors-header">
+        <h1 class="sponsors-title">OUR SPONSORS <span class="slash-anim">//</span></h1>
+        <p class="sponsors-subtitle">POWERING THE FUTURE OF INNOVATION</p>
+        <div class="sponsors-divider"></div>
       </div>
 
+      <div class="sponsors-tier-wrapper">
+        <h2 class="sponsors-coming-soon">COMING SOON</h2>
+        <p class="sponsors-sub-desc">Join visionaries shaping the future.</p>
+
+        <!-- PLATINUM TIER -->
+        <div class="sponsor-tier-group platinum-tier">
+          <div class="tier-badge">PLATINUM</div>
+          <div class="sponsor-slots-container">
+            <div class="sponsor-empty-slot large-slot">
+              <span class="slot-text">YOUR BRAND HERE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- GOLD TIER -->
+        <div class="sponsor-tier-group gold-tier">
+          <div class="tier-badge">GOLD</div>
+          <div class="sponsor-slots-container">
+            <div class="sponsor-empty-slot medium-slot">
+              <span class="slot-text">YOUR BRAND HERE</span>
+            </div>
+            <div class="sponsor-empty-slot medium-slot">
+              <span class="slot-text">YOUR BRAND HERE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SILVER TIER -->
+        <div class="sponsor-tier-group silver-tier">
+          <div class="tier-badge">SILVER</div>
+          <div class="sponsor-slots-container">
+            <div class="sponsor-empty-slot small-slot">
+              <span class="slot-text">YOUR BRAND HERE</span>
+            </div>
+            <div class="sponsor-empty-slot small-slot">
+              <span class="slot-text">YOUR BRAND HERE</span>
+            </div>
+            <div class="sponsor-empty-slot small-slot">
+              <span class="slot-text">YOUR BRAND HERE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsors-cta-container">
+          <a href="mailto:sponsorship@aayam.nit.ac.in" class="btn-become-sponsor">
+            BECOME A SPONSOR <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -123,48 +149,30 @@
         <!-- Column 1 -->
         <div class="footer-col">
           <div class="contact-card">
-            <div class="contact-name">SAI CHARAN AJARAPU</div>
-            <div class="contact-role">SPONSORSHIP HEAD</div>
-            <a href="mailto:sponsorship@aayam.nit.ac.in" class="contact-email">sponsorship@aayam.nit.ac.in</a>
-            <div class="contact-phone">+91 83330 28101</div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-name">HARSHA VARDHAN</div>
-            <div class="contact-role">SPONSORSHIP HEAD</div>
-            <a href="mailto:sponsorship@aayam.nit.ac.in" class="contact-email">sponsorship@aayam.nit.ac.in</a>
-            <div class="contact-phone">+91 94911 87225</div>
+            <div class="contact-name">CHHITIJ RANPAL DAMAI</div>
+            <div class="contact-role">GENERAL SECRETARY</div>
+            <a href="mailto:kshitijranpal123@gmail.com" class="contact-email">kshitijranpal123@gmail.com</a>
+            <div class="contact-phone">+91 8967377009</div>
           </div>
         </div>
 
         <!-- Column 2 -->
         <div class="footer-col">
           <div class="contact-card">
-            <div class="contact-name">TANMAY VISHWASRAO</div>
-            <div class="contact-role">OVERALL CO-ORDINATOR</div>
-            <a href="mailto:oc@aayam.nit.ac.in" class="contact-email">oc@aayam.nit.ac.in</a>
-            <div class="contact-phone">+91 99236 26782</div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-name">SYED MISHAAL</div>
-            <div class="contact-role">OVERALL CO-ORDINATOR</div>
-            <a href="mailto:oc@aayam.nit.ac.in" class="contact-email">oc@aayam.nit.ac.in</a>
-            <div class="contact-phone">+91 74185 95803</div>
+            <div class="contact-name">PRITISH KUMAR SINGH</div>
+            <div class="contact-role">ASSISTANT GENERAL SECRETARY</div>
+            <a href="mailto:pritishkumarsingh65@gmail.com" class="contact-email">pritishkumarsingh65@gmail.com</a>
+            <div class="contact-phone">+91 8984699302</div>
           </div>
         </div>
 
         <!-- Column 3 -->
         <div class="footer-col">
           <div class="contact-card">
-            <div class="contact-name">SAKET KASHYAP</div>
-            <div class="contact-role">PR & OUTREACH HEAD</div>
-            <a href="mailto:pr@aayam.nit.ac.in" class="contact-email">pr@aayam.nit.ac.in</a>
-            <div class="contact-phone">+91 93341 68717</div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-name">NAISHADHA V.</div>
-            <div class="contact-role">PR & OUTREACH HEAD</div>
-            <a href="mailto:pr@aayam.nit.ac.in" class="contact-email">pr@aayam.nit.ac.in</a>
-            <div class="contact-phone">+91 93900 27710</div>
+            <div class="contact-name">SHRABANI SINGHA</div>
+            <div class="contact-role">ASSISTANT GENERAL SECRETARY</div>
+            <a href="mailto:singha.shrabani.04@gmail.com" class="contact-email">singha.shrabani.04@gmail.com</a>
+            <div class="contact-phone">+91 8258069144</div>
           </div>
         </div>
       </div>
@@ -172,12 +180,14 @@
       <!-- Business Section -->
       <div class="footer-business">
         <div class="business-label">FOR BUSINESS RELATED QUERIES</div>
-        <a href="mailto:ayam.nita@nit.ac.in" class="business-email">AAYAM.NITA@NIT.AC.IN</a>
+        <a href="mailto:aayam.nita@nit.ac.in" class="business-email">btc2024.official@gmail.com</a>
       </div>
 
-      <!-- Brand Large Text -->
+      <!-- Brand Large Logo -->
       <div class="footer-brand">
-        <span class="brand-text">AAYAM 2026</span>
+        <div class="footer-logo-wrapper">
+          <img src="assets/AAYAM.png" alt="AAYAM 2026 Logo" class="footer-logo-img">
+        </div>
       </div>
 
       <!-- Social Icons -->
@@ -186,7 +196,7 @@
             class="fa-brands fa-instagram"></i></a>
         <a href="https://www.youtube.com/@BTC_NITA" target="_blank" class="social-link" aria-label="YouTube"><i
             class="fa-brands fa-youtube"></i></a>
-        <a href="#" class="social-link" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+        <!-- <a href="#" class="social-link" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a> -->
         <a href="https://www.linkedin.com/company/board-of-technical-community-btc/" target="_blank" class="social-link"
           aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       </div>

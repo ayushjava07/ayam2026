@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AAYAM 2026 | NIT Agartala</title>
 
+  <link rel="icon" type="image/png" href="assets/logocolor.PNG">
+
   <!-- Premium Bold Fonts for Tech Fest -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,14 +52,35 @@
       <img src="assets/logocolor.PNG" alt="AAYAM Color Logo" class="nav-logo-icon">
       <img src="assets/AAYAM.png" alt="AAYAM Logo" class="nav-logo-img">
     </a>
-    <div class="nav-menu">
-      <!-- <a href="index.html" class="nav-link">Home</a>
-      <a href="events.html" class="nav-link">Events</a>
-      <a href="sponsors.html" class="nav-link">Sponsors</a>
-      <a href="merch.html" class="nav-link">Merch <i class="fa-solid fa-tag"
+    <div class="hamburger-btn" id="hamburger-btn">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+    <div class="nav-menu" id="nav-menu">
+      <div class="mobile-nav-header">
+        <div class="mobile-brand-container">
+          <img src="assets/logocolor.PNG" alt="AAYAM" class="mobile-logo-img">
+          <img src="assets/AAYAM.png" alt="AAYAM Logo" class="mobile-brand-name-img" style="height: 32px;">
+        </div>
+        <button id="mobile-menu-close" class="mobile-menu-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <a href="index.html" class="nav-link active" style="--i:1;"><i class="fa-solid fa-house mobile-icon"></i>Home</a>
+      <a href="events.html" class="nav-link" style="--i:2;"><i class="fa-regular fa-calendar mobile-icon"></i>Events</a>
+      <a href="sponsors.html" class="nav-link" style="--i:3;"><i class="fa-solid fa-star mobile-icon"></i>Sponsors</a>
+      <a href="merch.html" class="nav-link" style="--i:4;"><i class="fa-solid fa-bag-shopping mobile-icon"></i>Merch <i
+          class="fa-solid fa-tag desktop-tag"
           style="font-size: 0.7em; vertical-align: super; color: var(--color-pink);"></i></a>
-      <a href="#gallery" class="nav-link">Gallery</a> -->
-      <a href="#register" class="btn-nav-ticket">STAY TUNED</a>
+      <!-- <a href="#gallery" class="nav-link">Gallery</a> -->
+      <a href="#register" class="btn-nav-ticket desktop-only">STAY TUNED</a>
+
+      <div class="mobile-nav-bottom">
+        <div class="mobile-socials">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-discord"></i></a>
+        </div>
+        <a href="#register" class="mobile-btn-register">REGISTER NOW</a>
+      </div>
     </div>
   </nav>
 
@@ -68,7 +91,7 @@
       <!-- Left Column -->
       <div class="hero-left">
         <div class="hero-overline">
-          <span class="slash">//</span> March XX-XX, 2026
+          <span class="slash">//</span> March 06-08, 2026
         </div>
 
         <h1 class="poster-headline">
@@ -185,10 +208,13 @@
     <div class="events-container" style="width: 100%; display: flex; justify-content: center;">
 
       <div class="coming-soon-container">
-        <div class="coming-soon-content">
+        <div class="coming-soon-content" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
           <i class="fa-solid fa-rocket lock-icon"></i>
           <h3 class="coming-soon-title">COMING SOON</h3>
           <p class="coming-soon-subtitle">Unveiling Highlights Shortly</p>
+          <a href="events.html" class="btn-skew-pink" style="text-decoration: none; margin-top: 1rem;">
+            BROWSE ALL EVENTS
+          </a>
         </div>
       </div>
 

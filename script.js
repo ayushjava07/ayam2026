@@ -1036,3 +1036,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// --- 11. MOBILE NAVIGATION HAMBURGER MENU ---
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const navOverlay = document.getElementById('nav-overlay');
+
+    function closeMenu() {
+        if (navMenu) navMenu.classList.remove('active');
+        if (navOverlay) navOverlay.classList.remove('active');
+    }
+
+    if (hamburgerBtn && navMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            navMenu.classList.add('active');
+            if (navOverlay) navOverlay.classList.add('active');
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeMenu);
+        }
+
+        if (navOverlay) {
+            navOverlay.addEventListener('click', closeMenu);
+        }
+
+        // Close menu when clicking a link
+        const navLinks = navMenu.querySelectorAll('.nav-link, .btn-nav-ticket, .mobile-btn-register');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    }
+});
