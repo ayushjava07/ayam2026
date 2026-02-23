@@ -826,7 +826,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 2, title: 'Defence Exhibition', time: '10:30 AM – 12:00 PM', category: 'Exhibition', desc: 'Showcasing defense technology. RNT Ground', location: 'RNT Ground' },
             { id: 3, title: 'MUN Day 1 (Begins)', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Model United Nations session 1. MB-100', location: 'MB-100' },
             { id: 4, title: 'Aayam Cinematica (Theme Reveal)', time: '10:30 AM – 12:00 PM', category: 'Cultural', desc: 'Cinematic theme reveal. Online', location: 'Online' },
-            { id: 5, title: 'Guesstimate', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Estimation competition. Online', location: 'Online' },
+            { id: 5, title: 'Guesstimate', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Estimation competition. Online', location: 'Online', registerLink: 'UNSTOP_LINK_HERE' },
             { id: 6, title: 'On Campus 2D Workshop', time: '11:30 AM – 1:00 PM', category: 'Workshop', desc: '2D design workshop. Virtual Classroom', location: 'Virtual Classroom' },
             { id: 7, title: 'Technothon', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Technical marathon. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
             { id: 8, title: 'Reverse Shark Tank', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Entrepreneurship competition. CE 201', location: 'CE 201' },
@@ -844,13 +844,13 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 18, title: 'MUN Day 2 (Begins)', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Day 2 of Model United Nations. MB-100', location: 'MB-100' },
             { id: 19, title: 'Automobile Expo', time: '11:30 AM – 1:00 PM', category: 'Exhibition', desc: 'Automotive technology showcase. RNT Ground', location: 'RNT Ground' },
             { id: 20, title: 'Baja Roadshow', time: '11:30 AM – 1:00 PM', category: 'Exhibition', desc: 'Baja SAE vehicle display. RNT Ground', location: 'RNT Ground' },
-            { id: 21, title: 'Glider Competition', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Glider flying competition. RNT Ground', location: 'RNT Ground' },
+            { id: 21, title: 'Glider Competition', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Glider flying competition. RNT Ground', location: 'RNT Ground', registerLink: 'UNSTOP_LINK_HERE' },
             { id: 22, title: 'Baja Design Competition', time: '2:00 PM – 3:30 PM', category: 'Tech', desc: 'Vehicle design challenge. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
             { id: 23, title: 'Case Study (Day 1)', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Business case study competition. Virtual Classroom', location: 'Virtual Classroom' },
-            { id: 24, title: 'Hackathon Day 1', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Coding hackathon begins. CE-201', location: 'CE-201' },
+            { id: 24, title: 'Hackathon Day 1', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Coding hackathon begins. CE-201', location: 'CE-201', registerLink: 'UNSTOP_LINK_HERE' },
             { id: 25, title: 'Anarc Sumo War', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Robot sumo wrestling. RNT Ground', location: 'RNT Ground', registerLink: 'UNSTOP_LINK_HERE' },
             { id: 26, title: 'Phewsion’s Gaming Stall', time: '2:00 PM – 6:30 PM', category: 'Exhibition', desc: 'Gaming zone. RNT Ground', location: 'RNT Ground' },
-            { id: 27, title: 'Designathon', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Design marathon. CSE G07', location: 'CSE G07' },
+            { id: 27, title: 'Designathon', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Design marathon. CSE G07', location: 'CSE G07', registerLink: 'UNSTOP_LINK_HERE' },
             { id: 28, title: 'MUN Day 2 (Ends)', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Conclusion of Day 2 MUN. MB-100', location: 'MB-100' },
             { id: 29, title: 'IPL Auction', time: '4:00 PM – 6:30 PM', category: 'Tech', desc: 'Mock IPL Auction. Visvesvaraya Auditorium', location: 'Visvesvaraya Auditorium' },
             { id: 30, title: 'Star Gazing', time: '6:30 PM – 7:30 PM', category: 'Tech', desc: 'Explore astronomy, space technology, and celestial observation. SAC Rooftop', location: 'SAC Rooftop' },
@@ -860,9 +860,9 @@ document.addEventListener('DOMContentLoaded', () => {
         2: [
             { id: 32, title: 'Tech Panel', time: '9:00 AM – 10:00 AM', category: 'Talk', desc: 'Expert panel discussion on technology and innovation. S.V. Seminar Hall', location: 'S.V. Seminar Hall' },
             { id: 33, title: 'Anima Drone Race', time: '10:00 AM – 11:30 AM', category: 'Tech', desc: 'Drone racing competition. RNT Ground', location: 'RNT Ground' },
-            { id: 34, title: 'Hackathon Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Hackathon coding continues. CE 201', location: 'CE 201' },
+            { id: 34, title: 'Hackathon Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Hackathon coding continues. CE 201', location: 'CE 201', registerLink: 'UNSTOP_LINK_HERE' },
             { id: 35, title: 'Case Study Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Case study finals. Virtual Classroom', location: 'Virtual Classroom' },
-            { id: 36, title: 'Capture the Flag', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Cybersecurity competition. RNT Ground', location: 'RNT Ground' },
+            { id: 36, title: 'Capture the Flag', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Cybersecurity competition. RNT Ground', location: 'RNT Ground', registerLink: 'UNSTOP_LINK_HERE' },
             { id: 37, title: 'Hackathon/Winner Announcement', time: '2:00 PM – 3:00 PM', category: 'Talk', desc: 'Prize distribution ceremony. Visvesvaraya Auditorium', location: 'Visvesvaraya Auditorium' },
             { id: 38, title: 'Debate on Tech', time: '2:00 PM – 3:00 PM', category: 'Tech', desc: 'Technology debate. Civil Gallery', location: 'Civil Gallery' },
             { id: 39, title: 'CAD Workshop', time: '3:00 PM – 4:30 PM', category: 'Workshop', desc: 'Computer Aided Design workshop. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
@@ -908,13 +908,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Stagger animation delay
             item.style.transitionDelay = `${index * 0.1}s`;
 
-            // Registration button — only for Tech (competition) events
-            let regBtn = '';
-            if (event.category === 'Tech') {
-                regBtn = event.registerLink
-                    ? `<a href="${event.registerLink}" target="_blank" class="event-register-btn" onclick="event.stopPropagation()">⚡ REGISTER NOW</a>`
-                    : `<button class="event-coming-soon-btn" disabled onclick="event.stopPropagation()">🔒 REGISTRATION OPENING SOON</button>`;
-            }
+            // Register button — only for competition events (those with a registerLink)
+            const regBtn = event.registerLink
+                ? `<a href="${event.registerLink}" target="_blank" class="event-register-btn">⚡ REGISTER NOW</a>`
+                : '';
 
             // Inner HTML structure
             item.innerHTML = `
@@ -924,7 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="timeline-dot"></div>
                 <div class="event-card-wrapper" style="--i: ${index}">
-                    <div class="anti-gravity-card" onclick="openEventModal(${event.id})">
+                    <div class="anti-gravity-card">
                         <div class="card-content">
                             <h3>${event.title}</h3>
                             <p>${event.desc}</p>
@@ -975,76 +972,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Render
     renderTimeline();
 
-    // --- CATEGORY VIBE MESSAGES ---
-    const categoryMessages = {
-        'Talk': { emoji: '🎤', text: 'FEEL THE SPEAKER VIBE', sub: 'Get inspired by industry legends' },
-        'Workshop': { emoji: '🛠️', text: 'LEVEL UP YOUR SKILLS', sub: 'Hands-on. Real. Powerful.' },
-        'Exhibition': { emoji: '🚀', text: 'WITNESS THE FUTURE', sub: "Tech you've never seen before" },
-        'Cultural': { emoji: '🔥', text: 'FEEL THE ENERGY', sub: 'Lose yourself in the moment' },
-        'Tech': { emoji: '⚡', text: 'ENTER THE ARENA', sub: 'Compete. Build. Dominate.' }
-    };
-
-    window.showEventVibe = function (category) {
-        const toast = document.getElementById('event-toast');
-        if (!toast) return;
-        const msg = categoryMessages[category] || categoryMessages['Tech'];
-        toast.innerHTML = `
-            <span class="toast-emoji">${msg.emoji}</span>
-            <span class="toast-title">${msg.text}</span>
-            <span class="toast-sub">${msg.sub}</span>
-        `;
-        toast.classList.remove('show');
-        // Force reflow so re-triggering the animation works
-        void toast.offsetWidth;
-        toast.classList.add('show');
-        clearTimeout(toast._hideTimer);
-        toast._hideTimer = setTimeout(() => toast.classList.remove('show'), 2500);
-    };
-
-    // Make modal function global so onclick works
-    window.openEventModal = function (id) {
-        const modalOverlay = document.getElementById('eventModalOverlay');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalTime = document.getElementById('modalTime');
-        const modalDesc = document.getElementById('modalDesc');
-
-        // Find event
-        let event = null;
-        Object.values(eventData).forEach(day => {
-            const found = day.find(e => e.id === id);
-            if (found) event = found;
-        });
-
-        if (event) {
-            showEventVibe(event.category);
-            modalTitle.textContent = event.title;
-            modalTime.textContent = `${event.time} | ${event.location}`;
-            modalDesc.textContent = event.desc;
-            modalOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-    };
-
-    // Close Modal Logic
-    const closeBtn = document.querySelector('.close-modal');
-    const modalOverlay = document.getElementById('eventModalOverlay');
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            modalOverlay.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    }
-
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        });
-    }
 });
+
 
 // --- 9. MERCHANDISE CAROUSEL ---
 // --- 9. MERCHANDISE GRID INTERACTIVITY (Added) ---
