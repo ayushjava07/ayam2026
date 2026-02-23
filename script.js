@@ -816,54 +816,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!timelineContainer) return;
 
     // --- EVENT DATA ---
+    // registerLink: 'https://...'    → Live "Register Now" button (Unstop / GForm URL)
+    // registerLink: 'COMING_SOON'    → "Registration Opening Soon" badge (no link yet)
+    // no registerLink                → no button shown (non-competition events)
     const eventData = {
         0: [
-            { id: 1, title: 'Keynote Session', time: '9:00 AM – 10:30 AM', category: 'Talk', desc: 'Opening keynote of AAYAM 2026. S.V. Seminar Hall', location: 'S.V. Seminar Hall' },
-            { id: 2, title: 'Defence Exhibition', time: '10:30 AM – 12:00 PM', category: 'Exhibition', desc: 'Showcasing defense technology. RNT Ground', location: 'RNT Ground' },
-            { id: 3, title: 'MUN Day 1 (Begins)', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Model United Nations session 1. MB-100', location: 'MB-100' },
-            { id: 4, title: 'Aayam Cinematica (Theme Reveal)', time: '10:30 AM – 12:00 PM', category: 'Cultural', desc: 'Cinematic theme reveal. Online', location: 'Online' },
-            { id: 5, title: 'Guesstimate', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Estimation competition. Online', location: 'Online', registerLink: 'UNSTOP_LINK_HERE' },
-            { id: 6, title: 'On Campus 2D Workshop', time: '11:30 AM – 1:00 PM', category: 'Workshop', desc: '2D design workshop. Virtual Classroom', location: 'Virtual Classroom' },
-            { id: 7, title: 'Technothon', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Technical marathon. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
-            { id: 8, title: 'Reverse Shark Tank', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Entrepreneurship competition. CE 201', location: 'CE 201' },
-            { id: 9, title: 'AI/ML Workshop', time: '2:00 PM – 3:30 PM', category: 'Workshop', desc: 'Artificial Intelligence workshop. CE 201', location: 'CE 201' },
-            { id: 10, title: 'Phewsion’s Gaming Stall', time: '2:00 PM – 7:00 PM', category: 'Exhibition', desc: 'Gaming experience zone. RNT Ground', location: 'RNT Ground' },
+            { id: 1, title: 'Keynote Session', time: '9:00 AM – 10:30 AM', category: 'Talk', desc: 'Opening keynote of AAYAM 2026.', location: 'S.V. Seminar Hall' },
+            { id: 2, title: 'Defence Exhibition', time: '10:30 AM – 12:00 PM', category: 'Exhibition', desc: 'Showcasing defense technology.', location: 'RNT Ground' },
+            { id: 3, title: 'MUN Day 1 (Begins)', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Model United Nations session 1.', location: 'MB-100', registerLink: 'COMING_SOON' },
+            { id: 4, title: 'Aayam Cinematica (Theme Reveal)', time: '10:30 AM – 12:00 PM', category: 'Cultural', desc: 'Cinematic theme reveal.', location: 'Online' },
+            { id: 5, title: 'Guesstimate', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Estimation competition.', location: 'Online', registerLink: 'COMING_SOON' },
+            { id: 6, title: 'On Campus 2D Workshop', time: '11:30 AM – 1:00 PM', category: 'Workshop', desc: '2D design workshop.', location: 'Virtual Classroom', registerLink: 'COMING_SOON' },
+            { id: 7, title: 'Technothon', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Technical marathon.', location: 'Electrical Seminar Hall', registerLink: 'COMING_SOON' },
+            { id: 8, title: 'Reverse Shark Tank', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Entrepreneurship competition.', location: 'CE 201', registerLink: 'COMING_SOON' },
+            { id: 9, title: 'AI/ML Workshop', time: '2:00 PM – 3:30 PM', category: 'Workshop', desc: 'Artificial Intelligence workshop.', location: 'CE 201', registerLink: 'COMING_SOON' },
+            { id: 10, title: 'Phewsion\'s Gaming Stall', time: '2:00 PM – 7:00 PM', category: 'Exhibition', desc: 'Gaming experience zone.', location: 'RNT Ground' },
             { id: 11, title: 'DSAI Exhibition', time: '2:00 PM – 7:00 PM', category: 'Exhibition', desc: 'Data Science & AI exhibition.', location: 'RNT Ground' },
             { id: 12, title: 'CITC Exhibition', time: '2:00 PM – 7:00 PM', category: 'Exhibition', desc: 'CITC Project showcase.', location: 'RNT Ground' },
-            { id: 13, title: 'MUN Day 1 (Ends)', time: '2:00 PM – 7:00 PM', category: 'Tech', desc: 'Conclusion of Day 1 MUN. MB-100', location: 'MB-100' },
-            { id: 14, title: 'Star Gazing', time: '6:30 PM – 7:30 PM', category: 'Tech', desc: 'Explore astronomy, space technology, and celestial observation. SAC Rooftop', location: 'SAC Rooftop' },
-            { id: 15, title: 'Inauguration & Speaker Session', time: '7:30 PM – 9:30 PM', category: 'Talk', desc: 'Grand inauguration ceremony followed by guest speakers and insights. RNT Ground (Main Stage)', location: 'RNT Ground (Main Stage)' }
+            { id: 13, title: 'MUN Day 1 (Ends)', time: '2:00 PM – 7:00 PM', category: 'Tech', desc: 'Conclusion of Day 1 MUN.', location: 'MB-100' },
+            { id: 14, title: 'Star Gazing', time: '6:30 PM – 7:30 PM', category: 'Tech', desc: 'Explore astronomy, space technology, and celestial observation.', location: 'SAC Rooftop' },
+            { id: 15, title: 'Inauguration & Speaker Session', time: '7:30 PM – 9:30 PM', category: 'Talk', desc: 'Grand inauguration ceremony followed by guest speakers and insights.', location: 'RNT Ground (Main Stage)' }
         ],
         1: [
-            { id: 16, title: 'Creator\'s Conclave', time: '9:30 AM – 10:30 AM', category: 'Talk', desc: 'Meet the creators. S.V. Seminar Hall', location: 'S.V. Seminar Hall' },
-            { id: 17, title: 'Pixels Workshop', time: '10:30 AM – 12:00 PM', category: 'Workshop', desc: 'Design and creativity workshop. CSE G-07', location: 'CSE G-07', registerLink: 'UNSTOP_LINK_HERE' },
-            { id: 18, title: 'MUN Day 2 (Begins)', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Day 2 of Model United Nations. MB-100', location: 'MB-100' },
-            { id: 19, title: 'Automobile Expo', time: '11:30 AM – 1:00 PM', category: 'Exhibition', desc: 'Automotive technology showcase. RNT Ground', location: 'RNT Ground' },
-            { id: 20, title: 'Baja Roadshow', time: '11:30 AM – 1:00 PM', category: 'Exhibition', desc: 'Baja SAE vehicle display. RNT Ground', location: 'RNT Ground' },
-            { id: 21, title: 'Glider Competition', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Glider flying competition. RNT Ground', location: 'RNT Ground', registerLink: 'UNSTOP_LINK_HERE' },
-            { id: 22, title: 'Baja Design Competition', time: '2:00 PM – 3:30 PM', category: 'Tech', desc: 'Vehicle design challenge. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
-            { id: 23, title: 'Case Study (Day 1)', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Business case study competition. Virtual Classroom', location: 'Virtual Classroom' },
-            { id: 24, title: 'Hackathon Day 1', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Coding hackathon begins. CE-201', location: 'CE-201', registerLink: 'UNSTOP_LINK_HERE' },
-            { id: 25, title: 'Anarc Sumo War', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Robot sumo wrestling. RNT Ground', location: 'RNT Ground', registerLink: 'UNSTOP_LINK_HERE' },
-            { id: 26, title: 'Phewsion’s Gaming Stall', time: '2:00 PM – 6:30 PM', category: 'Exhibition', desc: 'Gaming zone. RNT Ground', location: 'RNT Ground' },
-            { id: 27, title: 'Designathon', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Design marathon. CSE G07', location: 'CSE G07', registerLink: 'UNSTOP_LINK_HERE' },
-            { id: 28, title: 'MUN Day 2 (Ends)', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Conclusion of Day 2 MUN. MB-100', location: 'MB-100' },
-            { id: 29, title: 'IPL Auction', time: '4:00 PM – 6:30 PM', category: 'Tech', desc: 'Mock IPL Auction. Visvesvaraya Auditorium', location: 'Visvesvaraya Auditorium' },
-            { id: 30, title: 'Star Gazing', time: '6:30 PM – 7:30 PM', category: 'Tech', desc: 'Explore astronomy, space technology, and celestial observation. SAC Rooftop', location: 'SAC Rooftop' },
-            { id: 31, title: 'Speaker Session', time: '8:00 PM – 9:30 PM', category: 'Talk', desc: 'Guest speakers and insights. RNT Ground (Main Stage)', location: 'RNT Ground (Main Stage)' },
-            { id: 311, title: 'Prom and DJ Night', time: '9:30 PM onwards', category: 'Cultural', desc: 'Musical night. RNT Ground Main Stage', location: 'RNT Ground Main Stage' }
+            { id: 16, title: 'Creator\'s Conclave', time: '9:30 AM – 10:30 AM', category: 'Talk', desc: 'Meet the creators.', location: 'S.V. Seminar Hall' },
+            { id: 17, title: 'Pixels Workshop', time: '10:30 AM – 12:00 PM', category: 'Workshop', desc: 'Design and creativity workshop.', location: 'CSE G-07', registerLink: 'COMING_SOON' },
+            { id: 18, title: 'MUN Day 2 (Begins)', time: '10:30 AM – 12:00 PM', category: 'Tech', desc: 'Day 2 of Model United Nations.', location: 'MB-100' },
+            { id: 19, title: 'Automobile Expo', time: '11:30 AM – 1:00 PM', category: 'Exhibition', desc: 'Automotive technology showcase.', location: 'RNT Ground' },
+            { id: 20, title: 'Baja Roadshow', time: '11:30 AM – 1:00 PM', category: 'Exhibition', desc: 'Baja SAE vehicle display.', location: 'RNT Ground' },
+            { id: 21, title: 'Glider Competition', time: '11:30 AM – 1:00 PM', category: 'Tech', desc: 'Glider flying competition.', location: 'RNT Ground', registerLink: 'COMING_SOON' },
+            { id: 22, title: 'Baja Design Competition', time: '2:00 PM – 3:30 PM', category: 'Tech', desc: 'Vehicle design challenge.', location: 'Electrical Seminar Hall', registerLink: 'COMING_SOON' },
+            { id: 23, title: 'Case Study (Day 1)', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Business case study competition.', location: 'Virtual Classroom', registerLink: 'COMING_SOON' },
+            { id: 24, title: 'Hackathon Day 1', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Coding hackathon begins.', location: 'CE-201', registerLink: 'COMING_SOON' },
+            { id: 25, title: 'Anarc Sumo War', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Robot sumo wrestling.', location: 'RNT Ground', registerLink: 'COMING_SOON' },
+            { id: 26, title: 'Phewsion\'s Gaming Stall', time: '2:00 PM – 6:30 PM', category: 'Exhibition', desc: 'Gaming zone.', location: 'RNT Ground' },
+            { id: 27, title: 'Designathon', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Design marathon.', location: 'CSE G07', registerLink: 'COMING_SOON' },
+            { id: 28, title: 'MUN Day 2 (Ends)', time: '2:00 PM – 6:30 PM', category: 'Tech', desc: 'Conclusion of Day 2 MUN.', location: 'MB-100' },
+            { id: 29, title: 'IPL Auction', time: '4:00 PM – 6:30 PM', category: 'Tech', desc: 'Mock IPL Auction.', location: 'Visvesvaraya Auditorium', registerLink: 'COMING_SOON' },
+            { id: 30, title: 'Star Gazing', time: '6:30 PM – 7:30 PM', category: 'Tech', desc: 'Explore astronomy, space technology, and celestial observation.', location: 'SAC Rooftop' },
+            { id: 31, title: 'Speaker Session', time: '8:00 PM – 9:30 PM', category: 'Talk', desc: 'Guest speakers and insights.', location: 'RNT Ground (Main Stage)' },
+            { id: 311, title: 'Prom and DJ Night', time: '9:30 PM onwards', category: 'Cultural', desc: 'Musical night.', location: 'RNT Ground Main Stage' }
         ],
         2: [
-            { id: 32, title: 'Tech Panel', time: '9:00 AM – 10:00 AM', category: 'Talk', desc: 'Expert panel discussion on technology and innovation. S.V. Seminar Hall', location: 'S.V. Seminar Hall' },
-            { id: 33, title: 'Anima Drone Race', time: '10:00 AM – 11:30 AM', category: 'Tech', desc: 'Drone racing competition. RNT Ground', location: 'RNT Ground' },
-            { id: 34, title: 'Hackathon Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Hackathon coding continues. CE 201', location: 'CE 201', registerLink: 'UNSTOP_LINK_HERE' },
-            { id: 35, title: 'Case Study Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Case study finals. Virtual Classroom', location: 'Virtual Classroom' },
-            { id: 36, title: 'Capture the Flag', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Cybersecurity competition. RNT Ground', location: 'RNT Ground', registerLink: 'UNSTOP_LINK_HERE' },
-            { id: 37, title: 'Hackathon/Winner Announcement', time: '2:00 PM – 3:00 PM', category: 'Talk', desc: 'Prize distribution ceremony. Visvesvaraya Auditorium', location: 'Visvesvaraya Auditorium' },
-            { id: 38, title: 'Debate on Tech', time: '2:00 PM – 3:00 PM', category: 'Tech', desc: 'Technology debate. Civil Gallery', location: 'Civil Gallery' },
-            { id: 39, title: 'CAD Workshop', time: '3:00 PM – 4:30 PM', category: 'Workshop', desc: 'Computer Aided Design workshop. Electrical Seminar Hall', location: 'Electrical Seminar Hall' },
-            { id: 40, title: 'Aayam Cinematica Screening', time: '5:00 PM – 6:30 PM', category: 'Tech', desc: 'A tech-themed screening exploring the intersection of technology, filmmaking, and innovation. S.V. Auditorium', location: 'S.V. Auditorium' },
-            { id: 41, title: 'Cultural Event / Artist Night', time: '7:00 PM – 9:30 PM', category: 'Cultural', desc: 'Grand finale artist performance. RNT Ground Main Stage', location: 'RNT Ground Main Stage' }
+            { id: 32, title: 'Tech Panel', time: '9:00 AM – 10:00 AM', category: 'Talk', desc: 'Expert panel discussion on technology and innovation.', location: 'S.V. Seminar Hall' },
+            { id: 33, title: 'Anima Drone Race', time: '10:00 AM – 11:30 AM', category: 'Tech', desc: 'Drone racing competition.', location: 'RNT Ground', registerLink: 'COMING_SOON' },
+            { id: 34, title: 'Hackathon Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Hackathon coding continues.', location: 'CE 201', registerLink: 'COMING_SOON' },
+            { id: 35, title: 'Case Study Day 2', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Case study finals.', location: 'Virtual Classroom', registerLink: 'COMING_SOON' },
+            { id: 36, title: 'Capture the Flag', time: '11:00 AM – 1:00 PM', category: 'Tech', desc: 'Cybersecurity competition.', location: 'RNT Ground', registerLink: 'COMING_SOON' },
+            { id: 37, title: 'Hackathon/Winner Announcement', time: '2:00 PM – 3:00 PM', category: 'Talk', desc: 'Prize distribution ceremony.', location: 'Visvesvaraya Auditorium' },
+            { id: 38, title: 'Debate on Tech', time: '2:00 PM – 3:00 PM', category: 'Tech', desc: 'Technology debate.', location: 'Civil Gallery', registerLink: 'COMING_SOON' },
+            { id: 39, title: 'CAD Workshop', time: '3:00 PM – 4:30 PM', category: 'Workshop', desc: 'Computer Aided Design workshop.', location: 'Electrical Seminar Hall', registerLink: 'COMING_SOON' },
+            { id: 40, title: 'Aayam Cinematica Screening', time: '5:00 PM – 6:30 PM', category: 'Tech', desc: 'A tech-themed screening exploring the intersection of technology, filmmaking, and innovation.', location: 'S.V. Auditorium' },
+            { id: 41, title: 'Cultural Event / Artist Night', time: '7:00 PM – 9:30 PM', category: 'Cultural', desc: 'Grand finale artist performance.', location: 'RNT Ground Main Stage' }
         ]
     };
 
@@ -904,10 +907,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Stagger animation delay
             item.style.transitionDelay = `${index * 0.1}s`;
 
-            // Register button — only for competition events (those with a registerLink)
-            const regBtn = event.registerLink
-                ? `<a href="${event.registerLink}" target="_blank" class="event-register-btn">⚡ REGISTER NOW</a>`
-                : '';
+            // Register button — two states:
+            //   Live URL  → green "Register Now" button
+            //   COMING_SOON → amber "Registration Opening Soon" badge (no link)
+            let regBtn = '';
+            if (event.registerLink && event.registerLink !== 'COMING_SOON') {
+                regBtn = `<a href="${event.registerLink}" target="_blank" class="event-register-btn">⚡ REGISTER NOW</a>`;
+            } else if (event.registerLink === 'COMING_SOON') {
+                regBtn = `<span class="event-register-soon">🕐 Registration Opening Soon</span>`;
+            }
 
             // Inner HTML structure
             item.innerHTML = `
