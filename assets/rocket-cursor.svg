@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="52" viewBox="0 0 32 52">
+  <defs>
+    <linearGradient id="body" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#FFB3F0"/>
+      <stop offset="45%"  stop-color="#FF00D6"/>
+      <stop offset="100%" stop-color="#5E00A0"/>
+    </linearGradient>
+    <linearGradient id="nosecone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#FFD6F7"/>
+      <stop offset="100%" stop-color="#FF00D6"/>
+    </linearGradient>
+    <linearGradient id="fin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#CC00B0"/>
+      <stop offset="100%" stop-color="#3A0060"/>
+    </linearGradient>
+    <radialGradient id="flame" cx="50%" cy="10%" r="80%">
+      <stop offset="0%"   stop-color="#FFEE55"/>
+      <stop offset="40%"  stop-color="#FF7300"/>
+      <stop offset="100%" stop-color="#FF2200" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="flameInner" cx="50%" cy="10%" r="70%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="flameGlow">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Flame exhaust (bottom center) -->
+  <g filter="url(#flameGlow)">
+    <ellipse cx="16" cy="46" rx="5.5" ry="9" fill="url(#flame)" opacity="0.9"/>
+    <ellipse cx="16" cy="44" rx="2.5" ry="5" fill="url(#flameInner)" opacity="0.85"/>
+  </g>
+
+  <!-- Left fin -->
+  <polygon points="10,32 2,44 11,36" fill="url(#fin)"/>
+  <!-- Right fin -->
+  <polygon points="22,32 30,44 21,36" fill="url(#fin)"/>
+
+  <!-- Body (main capsule) -->
+  <g filter="url(#glow)">
+    <rect x="10" y="16" width="12" height="22" rx="3" fill="url(#body)"/>
+    <!-- Highlight stripe -->
+    <rect x="11.5" y="17" width="3.5" height="18" rx="1.5" fill="rgba(255,255,255,0.22)"/>
+  </g>
+
+  <!-- Nose cone -->
+  <g filter="url(#glow)">
+    <polygon points="16,2 22,16 10,16" fill="url(#nosecone)"/>
+    <!-- Nose highlight -->
+    <polygon points="16,4 19,13 14,13" fill="rgba(255,255,255,0.30)"/>
+  </g>
+
+  <!-- Porthole window -->
+  <circle cx="16" cy="27" r="4.5" fill="white"   opacity="0.95"/>
+  <circle cx="16" cy="27" r="3.5" fill="#2200AA" opacity="0.75"/>
+  <circle cx="14.2" cy="25.2" r="1.1" fill="white" opacity="0.9"/>
+
+  <!-- Nose tip glow dot -->
+  <circle cx="16" cy="3.5" r="1.8" fill="white" opacity="0.5"/>
+</svg>

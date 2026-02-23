@@ -33,6 +33,7 @@ function initTwinkleStars() {
 }
 initTwinkleStars();
 
+
 // --- 1.1 DISTANT STARS (DOTS) ---
 function initDistantStars() {
     const container = document.getElementById('twinkle-container');
@@ -140,13 +141,26 @@ document.addEventListener('mousemove', (e) => {
 });
 
 
-// --- 3. CRAYON/NEON TRAIL EFFECT ---
+// --- 3. SMOOTH NEON TRAIL EFFECT ---
 const canvas = document.getElementById('trail-canvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
-    let points = [];
 
-    // Auto-resize
+    // ── Config ──────────────────────────────────────────────
+    const TRAIL_DURATION = 550;  // ms a point lives
+    const MAX_POINTS = 60;   // max stored points
+    const LERP_SPEED = 0.18; // how fast the cursor "catches up" (0-1)
+    const MAX_WIDTH = 5;    // peak stroke width in px
+    const GLOW_COLOR = 'rgba(255, 0, 214,';
+    // ────────────────────────────────────────────────────────
+
+    let points = [];
+    let mouse = { x: -999, y: -999 };  // raw mouse
+    let smooth = { x: -999, y: -999 };  // lerp'd mouse
+    let lastSmooth = { x: -999, y: -999 };
+    let raf;
+
+    // Canvas resize
     const resizeCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -154,65 +168,196 @@ if (canvas) {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // Track mouse
-    document.addEventListener('mousemove', (e) => {
-        // Disable on mobile/tablet
+    // Raw mouse capture
+    window.addEventListener('mousemove', (e) => {
         if (window.innerWidth <= 768) return;
-        // Add point to queue
-        points.push({ x: e.clientX, y: e.clientY });
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
     });
 
-    // Animation Loop
+    // Catmull-Rom spline helper — draws a smooth curve through p1→p2
+    // using p0 and p3 as control neighbours
+    function catmullRomSegment(p0, p1, p2, p3, steps = 12) {
+        for (let t = 0; t <= 1; t += 1 / steps) {
+            const t2 = t * t, t3 = t2 * t;
+            const x = 0.5 * (
+                (2 * p1.x) +
+                (-p0.x + p2.x) * t +
+                (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t2 +
+                (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t3
+            );
+            const y = 0.5 * (
+                (2 * p1.y) +
+                (-p0.y + p2.y) * t +
+                (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t2 +
+                (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t3
+            );
+            ctx.lineTo(x, y);
+        }
+    }
+
     const animateTrail = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear frame
+        raf = requestAnimationFrame(animateTrail);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // 1. Remove old points (fading tail effect)
-        // Only remove if we have points. 
-        // We remove points faster if there are many, slower if few.
-        if (points.length > 0) {
-            // Remove the oldest point
-            points.shift();
-            // If line is very long, remove another one to keep it from getting infinite
-            if (points.length > 50) {
-                points.shift();
-            }
+        const now = Date.now();
+
+        // ── Lerp smooth position ──
+        smooth.x += (mouse.x - smooth.x) * LERP_SPEED;
+        smooth.y += (mouse.y - smooth.y) * LERP_SPEED;
+
+        // Only push if we actually moved
+        const dx = smooth.x - lastSmooth.x;
+        const dy = smooth.y - lastSmooth.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist > 1.5 && smooth.x > -900) {
+            // Compute velocity-based width (faster → slightly wider)
+            const speed = Math.min(dist, 30);
+            const widthFactor = 0.3 + (speed / 30) * 0.7; // 0.3–1.0
+
+            points.push({
+                x: smooth.x,
+                y: smooth.y,
+                t: now,
+                w: widthFactor * MAX_WIDTH
+            });
+
+            lastSmooth.x = smooth.x;
+            lastSmooth.y = smooth.y;
+
+            if (points.length > MAX_POINTS) points.shift();
         }
 
-        // 2. Draw
-        if (points.length > 1) {
-            ctx.lineJoin = 'round';
-            ctx.lineCap = 'round';
-            ctx.lineWidth = 20; // Thicker for visibility
+        // Expire old points
+        while (points.length > 0 && now - points[0].t > TRAIL_DURATION) points.shift();
 
-            // Neon/Crayon Glow
-            ctx.shadowBlur = 30; // Stronger glow
-            ctx.shadowColor = '#FF00D6';
-            ctx.strokeStyle = '#FF00D6';
+        if (points.length < 2) return;
 
+        // ── Draw Catmull-Rom spline with per-segment style ──
+        for (let i = 1; i < points.length; i++) {
+            const progress = i / (points.length - 1);      // 0=tail, 1=head
+            const ageFactor = 1 - (now - points[i].t) / TRAIL_DURATION; // 0–1
+
+            const alpha = progress * ageFactor * 0.75;
+            const width = points[i].w * progress;
+
+            // Clamp neighbours to valid range for spline
+            const p0 = points[Math.max(0, i - 2)];
+            const p1 = points[i - 1];
+            const p2 = points[i];
+            const p3 = points[Math.min(points.length - 1, i + 1)];
+
+            ctx.save();
             ctx.beginPath();
-            ctx.moveTo(points[0].x, points[0].y);
+            ctx.moveTo(p1.x, p1.y);
+            catmullRomSegment(p0, p1, p2, p3);
 
-            // Smooth curve
-            for (let i = 1; i < points.length - 1; i++) {
-                const xc = (points[i].x + points[i + 1].x) / 2;
-                const yc = (points[i].y + points[i + 1].y) / 2;
-                ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-            }
-            // Last point connection
-            if (points.length > 2) {
-                const last = points[points.length - 1];
-                ctx.lineTo(last.x, last.y);
-            }
-
+            ctx.lineWidth = Math.max(0.5, width);
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.strokeStyle = `${GLOW_COLOR}${alpha})`;
+            ctx.shadowColor = `${GLOW_COLOR}${alpha * 0.5})`;
+            ctx.shadowBlur = 6 + progress * 10;
             ctx.stroke();
+            ctx.restore();
         }
-
-        requestAnimationFrame(animateTrail);
     };
+
     animateTrail();
 }
 
-// --- 4. ENHANCED GSAP ENTRANCE ANIMATIONS ---
+// --- 4. DIRECTIONAL ROCKET CURSOR ---
+(function () {
+    // Only run on desktop with a real pointer
+    if (window.innerWidth <= 768 || window.matchMedia('(hover: none)').matches) return;
+
+    // ── Create the cursor element ──────────────────────────
+    const el = document.createElement('div');
+    el.id = 'rocket-cursor-el';
+    el.innerHTML = '<img src="assets/rocket-cursor.svg" alt="" draggable="false">';
+    document.body.appendChild(el);
+
+    // ── State ──────────────────────────────────────────────
+    // SVG points straight UP. transform-origin = nose tip (16px, 3px).
+    // CSS rotation 0° → pointing up, 90° → right, 180° → down, -90° → left.
+    // Formula: targetAngle = atan2(dy, dx) * (180/π) + 90
+    // (converts from standard math angle to CSS "from-top" rotation)
+
+    let posX = -200, posY = -200;     // current screen position
+    let prevX = -200, prevY = -200;   // last frame position
+    let rawX = -200, rawY = -200;     // raw mouse (updated by event)
+
+    let currentAngle = -90;           // start pointing up (−90° in atan2 space)
+    let targetAngle = -90;
+
+    const LERP_POS = 1.0;           // snap position directly to mouse (no lag)
+    const LERP_ROT = 0.14;          // how fast the rocket rotates (0=instant snappy, lower=smoother)
+    const MIN_DIST = 1.5;           // px movement threshold before updating angle
+
+    // ── Mouse position (raw) ───────────────────────────────
+    window.addEventListener('mousemove', (e) => {
+        rawX = e.clientX;
+        rawY = e.clientY;
+    });
+
+    // Hide when cursor leaves window
+    document.addEventListener('mouseleave', () => {
+        el.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+        el.style.opacity = '1';
+    });
+
+    // ── Angle lerp with shortest-path wrap-around ─────────
+    function lerpAngle(current, target, t) {
+        let diff = target - current;
+        // Clamp to [-180, +180] to always take the short arc
+        while (diff > 180) diff -= 360;
+        while (diff < -180) diff += 360;
+        return current + diff * t;
+    }
+
+    // ── RAF loop ──────────────────────────────────────────
+    const animate = () => {
+        requestAnimationFrame(animate);
+
+        // Snap position to mouse (no trailing lag on position)
+        posX = rawX;
+        posY = rawY;
+
+        // Compute velocity from last frame position
+        const dx = posX - prevX;
+        const dy = posY - prevY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist > MIN_DIST) {
+            // atan2(dy, dx) gives angle from east in standard math terms.
+            // Adding 90° converts to CSS "from-top" rotation.
+            targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+        }
+
+        prevX = posX;
+        prevY = posY;
+
+        // Smooth rotation toward target direction
+        currentAngle = lerpAngle(currentAngle, targetAngle, LERP_ROT);
+
+        // Position: translate so nose tip (transform-origin 16px, 3px) sits at cursor
+        // ⟹ offset element's top-left by (posX − 16, posY − 3)
+        el.style.transform =
+            `translate(${posX - 16}px, ${posY - 3}px) rotate(${currentAngle}deg)`;
+    };
+    animate();
+
+    // Hide/show on resize
+    window.addEventListener('resize', () => {
+        el.style.display = window.innerWidth <= 768 ? 'none' : 'block';
+    });
+})();
+
+// --- 5. ENHANCED GSAP ENTRANCE ANIMATIONS ---
+
 gsap.config({ nullTargetWarn: false }); // suppress 'target not found' warnings
 
 window.addEventListener('load', () => {
@@ -275,14 +420,10 @@ window.addEventListener('load', () => {
         ease: "power3.out"
     });
 
-    gsap.from('.pink-ring-img', {
-        opacity: 0,
-        scale: 0.8,
-        rotation: 180,
-        duration: 1.2,
-        delay: 1,
-        ease: "back.out(1.2)"
-    });
+    gsap.fromTo('.pink-ring-img',
+        { opacity: 0, scale: 0.8, rotation: 180 },
+        { opacity: 1, scale: 1, rotation: 0, duration: 1.2, delay: 1, ease: "back.out(1.2)" }
+    );
 
     gsap.from('.star-icon', {
         scale: 0,

@@ -59,6 +59,16 @@
     font-display: swap;
 }
 
+.pink-ring-img {
+    opacity: 1;
+    visibility: visible !important;
+    display: block !important;
+}
+
+.graphic-composition {
+    overflow: visible !important;
+}
+
 :root {
     /* Enhanced Color Palette - Futuristic Neon */
     --color-bg: #0a0a0f;
@@ -107,6 +117,35 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* ── Directional Rocket: hide ALL native cursors (JS takes over) ── */
+*,
+*::before,
+*::after,
+a,
+button,
+input,
+select,
+textarea,
+label,
+[role="button"] {
+    cursor: none !important;
+}
+
+/* Restore on mobile/touch — no custom cursor needed there */
+@media (max-width: 768px),
+(hover: none) {
+
+    *,
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    label {
+        cursor: auto !important;
+    }
 }
 
 html {
@@ -313,6 +352,18 @@ body::before {
         0 0 25px rgba(255, 0, 214, 0.4);
     font-style: normal;
     line-height: 1;
+}
+
+#trail-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    display: block;
+    opacity: 1;
 }
 
 /* Create geometric effect with pseudo-elements */
@@ -2485,7 +2536,7 @@ body::before {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    cursor: default;
+    cursor: url('assets/rocket-cursor.svg') 8 8, default;
     user-select: none;
     white-space: nowrap;
     filter: grayscale(100%);
@@ -5259,7 +5310,7 @@ body::before {
     background: rgba(245, 158, 11, 0.08);
     border: 1px dashed rgba(245, 158, 11, 0.5);
     border-radius: 4px;
-    cursor: default;
+    cursor: url('assets/rocket-cursor.svg') 8 8, default;
     /* Subtle pulse so it feels alive */
     animation: soonPulse 2.4s ease-in-out infinite;
 }
@@ -6154,4 +6205,39 @@ body::before {
         letter-spacing: 0.3px;
     }
 
+}
+
+/* ─────────────────────────────────────────────────────
+   DIRECTIONAL ROCKET CURSOR
+   JS-driven element that rotates to face mouse direction
+───────────────────────────────────────────────────── */
+#rocket-cursor-el {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 52px;
+    pointer-events: none;
+    z-index: 2147483647;
+    /* Always on top */
+    will-change: transform;
+    /* transform-origin at nose tip: center-x=16px, nose-y≈3px */
+    transform-origin: 16px 3px;
+    /* GPU-composited — no layout thrash */
+    transition: none;
+}
+
+#rocket-cursor-el img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 214, 0.9)) drop-shadow(0 0 12px rgba(255, 0, 214, 0.5));
+}
+
+/* Hide the JS cursor on mobile */
+@media (max-width: 768px),
+(hover: none) {
+    #rocket-cursor-el {
+        display: none !important;
+    }
 }
